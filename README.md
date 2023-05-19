@@ -1,0 +1,1 @@
+# rails-next.js-mysql
