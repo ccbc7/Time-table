@@ -1,7 +1,7 @@
 function sample() {
   return (
     <div>
-      Enter!welcome!!!
+      Enter!welcome
     </div>
   );
 }
