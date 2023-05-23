@@ -1,35 +1,35 @@
 version: '3.7'
 
 services:
-  db:
-    image: mysql:5.7
+  mydb:
+    image: mysql:8.0
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: sample
-      MYSQL_PASSWORD: password
+      MYSQL_USERNAME: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_HOST: mydb
     ports:
-      - 4306:3306
+      - 3306:3306
     volumes:
       - mysql-db:/var/lib/mysql
-  api:
+  backend:
     tty: true
     depends_on:
-      - db
+      - mydb
     build:
-      context: ./api/
+      context: ./backend/
       dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
-      - ./api:/app
-    command: bash -c "rm -f tmp/pids/server.pid && rails server -b 0.0.0.0"
-  front:
+      - ./backend:/app #
+    command: rails server -b 0.0.0.0
+  frontend:
     build:
-      context: ./front/
+      context: ./frontend/
       dockerfile: Dockerfile
     volumes:
-      - ./front/app:/usr/src/app
+      - ./frontend/app:/usr/src/app
     command: 'yarn dev'
     ports:
       - "8000:3000"
