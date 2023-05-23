@@ -1,1 +1,1 @@
-# rails-next.js-mysql
+# SPA8th
