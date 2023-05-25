@@ -8,6 +8,8 @@ RUN apt-get update -qq && apt-get install -y nodejs default-mysql-client
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
+RUN apt-get update
+RUN apt-get install -y vim
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
