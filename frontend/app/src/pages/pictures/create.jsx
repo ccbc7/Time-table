@@ -31,12 +31,17 @@ function Create() {
   return (
     <div>
       <input type="file" onChange={fileSelectedHandler} />
-      <button onClick={fileUploadHandler}>Upload</button>
+      <button
+        className="bg-blue-500 ml-4 px-3 hover:ring-4 ring-indigo-300 rounded-md"
+        onClick={fileUploadHandler}
+      >
+        Upload
+      </button>
       {uploadedImage && (
         <div>
           <h2>Uploaded Image</h2>
           <img
-            className="w-18 h-18 object-cover"
+            className="w-16 h-16 object-cover"
             src={uploadedImage}
             alt="Uploaded"
           />
@@ -45,14 +50,16 @@ function Create() {
       {images.length > 0 && ( // images 配列の要素数が 0 より大きい場合にのみ、画像を表示します。
         <div>
           <h2>All Uploaded Images</h2>
-          {images.map((imageUrl, index) => (
-            <img
-              className="w-18 h-18 object-cover"
-              key={index}
-              src={imageUrl}
-              alt={`Uploaded ${index}`}
-            />
-          ))}
+          <div className="flex">
+            {images.map((imageUrl, index) => (
+              <img
+                className="w-16 h-16 object-cover mx-2"
+                key={index}
+                src={imageUrl}
+                alt={`Uploaded ${index}`}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>
