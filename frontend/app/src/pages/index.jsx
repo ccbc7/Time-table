@@ -7,7 +7,8 @@ const Notes = () => {
 
   useEffect(() => {
     const fetchNotes = async () => {
-      const response = await axios.get("http://localhost:3000/api/v1/notes");
+      // const response = await axios.get("http://localhost:3000/api/v1/notes");
+      const response = await axios.get("/notes");
       setNotes(response.data);
     };
 
@@ -21,7 +22,8 @@ const Notes = () => {
     const deleteNote = async (id) => {
       if (window.confirm("本当に削除しますか？")) {
         // 追加
-        await axios.delete(`http://localhost:3000/api/v1/notes/${id}`);
+        // await axios.delete(`http://localhost:3000/api/v1/notes/${id}`);
+        await axios.delete(`/notes/${id}`);
         setNotes(notes.filter((note) => note.id !== id));
       }
     };

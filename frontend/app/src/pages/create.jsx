@@ -16,7 +16,7 @@ const CreateNote = () => {
       content: content,
     };
 
-    await axios.post("http://localhost:3000/api/v1/notes", note); //
+    await axios.post("/notes", note); 
 
     setTitle("");
     setContent(""); //ノートが作成された後でステートをリセットするため

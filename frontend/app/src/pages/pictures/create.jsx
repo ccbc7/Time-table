@@ -8,7 +8,7 @@ function Create() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/v1/pictures").then((response) => {
+    axios.get("/pictures").then((response) => {
       const imagesData = response.data.map((picture) => picture.image_url);
       setImages(imagesData);
     });
@@ -21,7 +21,7 @@ function Create() {
   const fileUploadHandler = () => {
     const fd = new FormData(); // FormData はフォームデータを扱うためのクラス
     fd.append("picture[image]", selectedFile, selectedFile.name);
-    axios.post("http://localhost:3000/api/v1/pictures", fd).then((res) => {
+    axios.post("/pictures", fd).then((res) => {
       console.log(res);
       setUploadedImage(res.data.image_url); // アップロードした写真のURLを保存します。
       setImages([...images, res.data.image_url]); // アップロードした画像をimages配列に追加します。
