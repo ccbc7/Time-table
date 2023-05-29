@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_USERNAME: myuser
       MYSQL_PASSWORD: mypassword
-      MYSQL_HOST: mydb
+      MYSQL_HOST2: mydb
     ports:
       - 3306:3306
     volumes:
