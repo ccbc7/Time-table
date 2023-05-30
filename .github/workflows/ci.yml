@@ -13,10 +13,9 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_USER: myuser
-          MYSQL_PASSWORD: mypassword
-          MYSQL_DATABASE: mydb-test
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
     steps:
