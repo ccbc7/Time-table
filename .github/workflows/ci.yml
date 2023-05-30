@@ -15,7 +15,7 @@ jobs:
         env:
           MYSQL_USER: myuser
           MYSQL_PASSWORD: mypassword
-          MYSQL_HOSTS2: mydb
+          MYSQL_HOSTS: mydb
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
