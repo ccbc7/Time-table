@@ -144,6 +144,10 @@ jobs:
         working-directory: ./backend
 
       - name: Run rspec
+        env:
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         run: bundle exec rspec
         working-directory: ./backend
 
