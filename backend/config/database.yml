@@ -11,7 +11,7 @@ development:
   database: backend_development
 
 test:
-  <<: *default
+  # <<: *default
   database: <%= ENV['MYSQL_DATABASE'] || 'backend_test' %> #MYSQL_DATABASEはGithub Actionsで設定されている
 
 
