@@ -4,4 +4,4 @@ test:
   username: myuser
   password: mypassword
   host: 127.0.0.1
-  database: mydb
+  database: mydb-test
