@@ -1,7 +1,11 @@
-test:
+default: &default
   adapter: mysql2
-  encoding: utf8
-  username: myuser
-  password: mypassword
-  host: 127.0.0.1
-  database: mydb
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV["MYSQL_USER"] || "myuser" %>
+  password: <%= ENV["MYSQL_PASSWORD"] || "mypassword" %>
+  host: <%= ENV["MYSQL_HOST"] || "127.0.0.1" %>
+
+test:
+  <<: *default
+  database: <%= ENV["MYSQL_DATABASE"] || "mydb_test" %>
