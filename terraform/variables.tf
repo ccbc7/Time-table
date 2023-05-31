@@ -19,16 +19,4 @@ variable "db_password" {
   sensitive   = true
 }
 
-# variable "copilot_security_group_id" {
-#   default = "sg-0b880556cd735fe91"
-# }
 
-# resource "aws_security_group_rule" "allow_copilot_access" {
-#   type              = "ingress"
-#   from_port         = 3306
-#   to_port           = 3306
-#   protocol          = "tcp"
-#   source_security_group_id = var.copilot_security_group_id
-
-#   security_group_id = aws_security_group.time_table02_rds_sg.id
-# }
