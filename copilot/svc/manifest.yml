@@ -17,7 +17,6 @@ http:
   path: '/'
   alias: time-table02.net #通常https://my-svc.my-env.app.time-table02.netでデプロイされるところをこちらで名前解決できる。
 
-
 # Configuration for your containers and service.
 image:
   # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/#image-build
@@ -43,7 +42,8 @@ network:
 #secrets:                      # Pass secrets from AWS Systems Manager (SSM) Parameter Store.
 #  GITHUB_TOKEN: GITHUB_TOKEN  # The key is the name of the environment variable, the value is the name of the SSM parameter.
 secrets:
-  MYSQL_HOST2: /copilot/app/my-env/secrets/MYSQL_HOST2 #パラメータストアを使用して、コンテナ内の環境変数に値を渡すことができる。
+  # MYSQL_HOST2: /copilot/app/env/secrets/MYSQL_HOST2 #パラメータストアを使用して、コンテナ内の環境変数に値を渡すことができる。
+  MYSQL_HOST_ECS: /copilot/app/env/secrets/MYSQL_HOST_ECS
 # You can override any of the values defined above by environment.
 #environments:
 #  test:
