@@ -98,4 +98,4 @@ jobs:
           copilot --version
 
       - name: Deploy to ECS
-        run: copilot svc deploy --name svc --env my-env
+        run: copilot svc deploy --name svc --env env
