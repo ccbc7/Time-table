@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-bucket = "terraform-time-table"
+bucket = "terraform-time-table02"
 acl    = "private"
 
 tags = {
