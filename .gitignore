@@ -62,4 +62,3 @@
 /frontend/app/*.tsbuildinfo
 /frontend/app/next-env.d.ts
 
-frontend/app/public/*.jpg
