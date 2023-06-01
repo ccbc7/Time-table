@@ -20,7 +20,7 @@ module Api
       def destroy
         @note = Note.find(params[:id])
         @note.destroy
-        head :no_content 
+        head :no_content
       end
 
       private
