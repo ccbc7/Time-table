@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
 function BBB() {
   return (
     <>
@@ -58,9 +57,9 @@ function BBB() {
           <Link href="/">
             <img
               className="w-96 h-64 object-cover object-center mx-4 rounded-md hover:ring-4 ring-indigo-300 overflow-hidden transform transition-all duration-400 ease-in-out hover:scale-105"
-              src="/bird.jpg"
+              src="/bird.JPG"
             />
-            <p>bird</p>
+            <p>bird!!</p>
           </Link>
         </div>
         <div>
