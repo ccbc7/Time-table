@@ -92,9 +92,10 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: Install AWS Copilot
-    run: |
-      curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-darwin
-      chmod +x /usr/local/bin/copilot
-      copilot --version
+        run: |
+          curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux
+          chmod +x /usr/local/bin/copilot
+          copilot --version
+
       - name: Deploy to ECS
         run: copilot svc deploy --name svc --env env
