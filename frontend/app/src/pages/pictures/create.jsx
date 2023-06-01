@@ -50,10 +50,10 @@ function Create() {
       {images.length > 0 && ( // images 配列の要素数が 0 より大きい場合にのみ、画像を表示します。
         <div>
           <h2>All Uploaded Images</h2>
-          <div className="flex">
+          <div className="flex  flex-wrap">
             {images.map((imageUrl, index) => (
               <img
-                className="w-16 h-16 object-cover mx-2"
+                className="w-16 h-16 object-cover mx-2 my-2"
                 key={index}
                 src={imageUrl}
                 alt={`Uploaded ${index}`}
