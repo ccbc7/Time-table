@@ -1,6 +1,6 @@
 import { signInWithPopup } from "firebase/auth";
 // import { signInWithGoogle } from "../firebase";
-import { auth, provider } from "../pages/firebase";
+import { auth, provider } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Home() {
