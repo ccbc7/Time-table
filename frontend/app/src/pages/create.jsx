@@ -16,7 +16,7 @@ const CreateNote = () => {
       content: content,
     };
 
-    await axios.post("/notes", note); 
+    await axios.post("/notes", note);
 
     setTitle("");
     setContent(""); //ノートが作成された後でステートをリセットするため
@@ -25,7 +25,7 @@ const CreateNote = () => {
     setTimeout(() => {
       setShowModal(false); // 2秒後にモーダルを非表示に
       router.push("/"); // その後トップページに遷移
-    }, 2000);
+    }, 1000);
   };
 
   return (
