@@ -16,7 +16,7 @@ function BBB() {
           プログラミング勉強中です!Next.jsとrailsを勉強しています!ポテパンキャンプ卒業生
         </p>
       </section>
-      <div class="flex justify-center flex-wrap text-center drop-shadow-2xl ">
+      <div className="flex justify-center flex-wrap text-center drop-shadow-2xl ">
         <div>
           <Link href="/">
             <img
