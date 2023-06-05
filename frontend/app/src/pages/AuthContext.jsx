@@ -27,3 +27,5 @@ export function AuthProvider({ children }) {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>; // AuthContext.Providerは、渡された値をコンテキストの現在の値としてコンシューマーに渡す
 }
+
+export default AuthContext;
