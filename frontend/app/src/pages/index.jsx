@@ -1,25 +1,31 @@
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { auth } from "../utils/firebase";
 
 const Notes = () => {
-  const [notes, setNotes] = useState([]); //ノートの一覧を格納するためのステートを作成します。
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    const fetchNotes = async () => {
-      const response = await axios.get("/notes");
+    const fetchNotes = async (userId) => {
+      const response = await axios.get(`/notes?user_id=${userId}`);
       setNotes(response.data);
     };
 
-    fetchNotes();
+    const unSub = auth.onAuthStateChanged((user) => {
+      if (user) fetchNotes(user.uid);  // ログインしている場合はノートを取得
+    });
+
+    return () => unSub(); // Clean up
   }, []);
 
-    const deleteNote = async (id) => {
-      if (window.confirm("本当に削除しますか？")) {
-        await axios.delete(`/notes/${id}`);
-        setNotes(notes.filter((note) => note.id !== id));
-      }
-    };
+  const deleteNote = async (id) => {
+    if (window.confirm("本当に削除しますか？")) {
+      const userId = auth.currentUser.uid;
+      await axios.delete(`/notes/${id}`, { data: { user_id: userId } });
+      setNotes(notes.filter((note) => note.id !== id));
+    }
+  };
 
   return (
     <>
@@ -51,7 +57,6 @@ const Notes = () => {
                 <td className="border border-black px-4 py-2">{note.id}</td>
                 <td className="border border-black px-4 py-2">
                   {new Intl.DateTimeFormat("ja-JP", {
-                    //日付をフォーマットするために、Intl.DateTimeFormatを使います。
                     dateStyle: "full",
                     timeStyle: "medium",
                   }).format(new Date(note.created_at))}
