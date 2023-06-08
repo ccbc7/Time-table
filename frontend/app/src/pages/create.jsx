@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Home from "./SignIn";
+import Header from "@/components/Header";
 import { auth, provider } from "../utils/firebase";
 
 const CreateNote = () => {
@@ -37,16 +37,17 @@ const CreateNote = () => {
 
   return (
     <>
+      <Header />
       {showModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen">
+          <div className="flex items-center justify-center">
             <div className="inline-block bg-purple-400 rounded p-5 text-lg text-black">
               送信しました
             </div>
           </div>
         </div>
       )}
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <div className="flex flex-col items-center justify-center  py-2">
         <div className="max-w-md w-full space-y-8 py-6">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             メモ作成
@@ -89,7 +90,6 @@ const CreateNote = () => {
             </div>
           </form>
         </div>
-        <Home />
       </div>
     </>
   );
