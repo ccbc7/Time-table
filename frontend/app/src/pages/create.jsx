@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Home from "./SignIn";
+import { auth, provider } from "../utils/firebase";
 
 const CreateNote = () => {
   const [title, setTitle] = useState("");
@@ -10,14 +12,19 @@ const CreateNote = () => {
 
   const submitForm = async (e) => {
     e.preventDefault(); //これはイベントハンドラ内で頻繁に見る一行で、デフォルトのイベント動作（この場合はフォームの送信によるページのリロード）を防止します。
+    if (!auth.currentUser) {
+      // ユーザーがログインしていなければ
+      alert("サインインしてください。"); // アラートを表示
+      return; // 関数から抜ける
+    }
 
     const note = {
       title: title,
       content: content,
+      user_id: auth.currentUser.uid, // ユーザーIDを追加
     };
 
     await axios.post("/notes", note);
-
     setTitle("");
     setContent(""); //ノートが作成された後でステートをリセットするため
     // router.push("/"); //ノートが作成された後に、トップページに遷移するようにします。
@@ -40,7 +47,7 @@ const CreateNote = () => {
         </div>
       )}
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <div className="max-w-md w-full space-y-8">
+        <div className="max-w-md w-full space-y-8 py-6">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             メモ作成
           </h2>
@@ -82,6 +89,7 @@ const CreateNote = () => {
             </div>
           </form>
         </div>
+        <Home />
       </div>
     </>
   );
