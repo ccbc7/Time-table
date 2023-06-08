@@ -10,6 +10,7 @@ import { useState } from "react";
 import getFirebaseErrorMessage from "../components/firebaseError";
 import { auth } from "../utils/firebase";
 import Link from "next/link";
+import Header from "../components/Header";
 
 function Home() {
   const auth = getAuth();
@@ -64,59 +65,62 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      {user ? (
-        <>
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <UserInfo />
-            <div className="flex flex-col space-y-4 mt-4">
-              <ProfileEditButton />
-              <AccountEditButton />
-              <SignOutButton />
+    <>
+      <Header />
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        {user ? (
+          <>
+            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md -mt-80">
+              <UserInfo />
+              <div className="flex flex-col space-y-4 mt-4">
+                <ProfileEditButton />
+                <AccountEditButton />
+                <SignOutButton />
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
+            <h2 className="text-3xl font-bold text-center mb-8">サインイン</h2>
+            <div className="flex flex-col space-y-4 mt-8">
+              <input
+                type="text"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                className="border p-2 rounded-md"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                className="border p-2 rounded-md"
+              />
+              <button
+                onClick={signInWithEmail}
+                className="px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+              >
+                Emailでサインイン
+              </button>
+              <p className="border-b-2 py-4"></p>
+              <SignInButton signInWithGoogle={signInWithGoogle} />
+              <button
+                onClick={signInAsGuest}
+                className="px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-400 hover:bg-orange-500"
+              >
+                ゲストとしてサインイン
+              </button>
+              <p>
+                初めてご利用ですか？新規登録は
+                <Link href="/SignUp" className="text-blue-700 cursor-pointer">
+                  こちら
+                </Link>
+              </p>
+              {error && <p className="text-red-500">{error}</p>}
             </div>
           </div>
-        </>
-      ) : (
-        <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
-          <h2 className="text-3xl font-bold text-center mb-8">サインイン</h2>
-          <div className="flex flex-col space-y-4 mt-8">
-            <input
-              type="text"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-              className="border p-2 rounded-md"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              className="border p-2 rounded-md"
-            />
-            <button
-              onClick={signInWithEmail}
-              className="px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              Emailでサインイン
-            </button>
-            <p className="border-b-2 py-4"></p>
-            <SignInButton signInWithGoogle={signInWithGoogle} />
-            <button
-              onClick={signInAsGuest}
-              className="px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-400 hover:bg-orange-500"
-            >
-              ゲストとしてサインイン
-            </button>
-            <p>
-              初めてご利用ですか？新規登録は
-              <Link href="/SignUp" className="text-blue-700 cursor-pointer">
-                こちら
-              </Link>
-            </p>
-            {error && <p className="text-red-500">{error}</p>}
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 
