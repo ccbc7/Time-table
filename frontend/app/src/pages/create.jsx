@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Home from "../components/Home";
+import Home from "./SignIn";
 import { auth, provider } from "../utils/firebase";
-
 
 const CreateNote = () => {
   const [title, setTitle] = useState("");
