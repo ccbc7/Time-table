@@ -1,6 +1,6 @@
-import Header from '@/components/Header';
-import UserInfo from '@/components/UserInfo';
-import Link from 'next/link';
+import Header from "@/components/Header";
+import UserInfo from "@/components/UserImage";
+import Link from "next/link";
 
 function index() {
   return (
