@@ -35,6 +35,12 @@ const Notes = () => {
           <thead>
             <tr>
               <th className="border border-black px-4 py-2 bg-violet-200">
+                イメージ
+              </th>
+              <th className="border border-black px-4 py-2 bg-violet-200">
+                ユーザーID
+              </th>
+              <th className="border border-black px-4 py-2 bg-violet-200">
                 ID
               </th>
               <th className="border border-black px-4 py-2 bg-violet-200">
@@ -49,11 +55,21 @@ const Notes = () => {
               <th className="border border-black px-4 py-2 bg-violet-200">
                 削除
               </th>
+              <th className="border border-black px-4 py-2 bg-violet-200">
+                削除
+              </th>
             </tr>
           </thead>
           <tbody>
             {notes.map((note) => (
               <tr key={note.id}>
+                <td className="border border-black px-4 py-2">
+                  <img src={note.image_url} alt={note.title} className="h-10" />
+                </td>
+
+                <td className="border border-black px-4 py-2">
+                  {note.user_id}
+                </td>
                 <td className="border border-black px-4 py-2">{note.id}</td>
                 <td className="border border-black px-4 py-2">
                   {new Intl.DateTimeFormat("ja-JP", {
@@ -67,6 +83,11 @@ const Notes = () => {
                 </td>
                 <td className="border border-black px-4 py-2">
                   <button onClick={() => deleteNote(note.id)}>削除</button>
+                </td>
+                <td className="border border-black px-4 py-2">
+                  <Link href={`/edit/${note.id}`}>
+                    編集
+                  </Link>
                 </td>
               </tr>
             ))}
