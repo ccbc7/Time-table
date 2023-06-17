@@ -4,6 +4,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import axios from "axios";
+// import OnlyPicture from "@/pages/OnlyPicture";
 
 const navigation = [
   { name: "本日の予定", href: "#", current: false },
@@ -12,7 +16,7 @@ const navigation = [
   { name: "施設登録", href: "#", current: false },
 ];
 const userNavigation = [
-  { name: "プロフィール", href: "#" },
+  { name: "プロフィール", href: "/Usernote" },
   { name: "アカウント設定", href: "#" },
   { name: "サインアウト", href: "#" },
 ];
@@ -26,8 +30,41 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
 export default function Example() {
   const [user] = useAuthState(auth);
+  const router = useRouter();
+  const photoUrl = user
+  ? user.photoURL || "/default_profile2.png"
+  : "/default_profile2.png"; //
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        // ログアウト成功後、ホームページへリダイレクト
+        router.push("/");
+      })
+      .catch((error) => {
+        // エラーハンドリング
+        console.error("ログアウトエラー：", error);
+      });
+  };
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async (userId) => {
+      const response = await axios.get(`/users?user_id=${userId}`);
+      setUsers(response.data);
+    };
+
+    const unSub = auth.onAuthStateChanged((user) => {
+      if (user) fetchUsers(user.uid);
+    });
+
+    return () => unSub(); // Clean up
+  }, []);
+
   return (
     <>
       <div className="min-h-full">
@@ -91,20 +128,29 @@ export default function Example() {
                             {/* Profile dropdown */}
                             <Menu as="div" className="relative ml-3">
                               <div>
-                                <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                <Menu.Button className="flex max-w-xs items-center rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                  {/* <Menu.Button> */}
                                   <span className="sr-only">
                                     Open user menu
                                   </span>
-                                  <img
-                                    className="h-8 w-8 rounded-full"
-                                    // src={user.imageUrl}
-                                    src={
-                                      user
-                                        ? user.photoURL
-                                        : "/default_profile2.png"
-                                    }
-                                    alt=""
-                                  />
+                                  {users.length > 0 ? (
+                                    <ul>
+                                      {users.map((user) => (
+                                        <li key={user.id}>
+                                          <img
+                                            src={user.image_url}
+                                            className="h-8 rounded-full"
+                                          />
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  ) : (
+                                    <img
+                                      className="h-8 w-8 rounded-full"
+                                      src={photoUrl}
+                                      alt="user"
+                                    />
+                                  )}
                                 </Menu.Button>
                               </div>
 
@@ -129,7 +175,7 @@ export default function Example() {
                                           )}
                                           onClick={
                                             item.name === "サインアウト"
-                                              ? () => auth.signOut()
+                                              ? handleSignOut
                                               : null
                                           }
                                         >
@@ -156,8 +202,6 @@ export default function Example() {
                           ))}
                         </>
                       )}
-
-
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
@@ -232,9 +276,7 @@ export default function Example() {
                         href={item.href}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                         onClick={
-                          item.name === "サインアウト"
-                            ? () => auth.signOut()
-                            : null
+                          item.name === "サインアウト" ? handleSignOut : null
                         }
                       >
                         {item.name}
