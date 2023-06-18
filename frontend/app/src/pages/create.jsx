@@ -1,10 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Home from "./SignIn";
+import Header from "@/components/Header";
 import { auth, provider } from "../utils/firebase";
 
 const CreateNote = () => {
+  const [selectedFile, setSelectedFile] = useState(null); // ファイルを保存するためのステートを追加
+
+  const fileSelectedHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [showModal, setShowModal] = useState(false); // モーダル表示のステートを追加
@@ -18,35 +23,45 @@ const CreateNote = () => {
       return; // 関数から抜ける
     }
 
-    const note = {
-      title: title,
-      content: content,
-      user_id: auth.currentUser.uid, // ユーザーIDを追加
-    };
+    // await axios.post("/notes", note); // この部分は実際のRailsのAPIエンドポイントに変更する
+    const fd = new FormData();
+    fd.append("note[title]", title);
+    fd.append("note[content]", content);
+    fd.append("note[user_id]", auth.currentUser.uid);
+    if (selectedFile) {
+      fd.append("note[image]", selectedFile, selectedFile.name); // 選択したファイルを追加
+    }
 
-    await axios.post("/notes", note);
+    await axios.post("/notes", fd);
+
+
     setTitle("");
     setContent(""); //ノートが作成された後でステートをリセットするため
     // router.push("/"); //ノートが作成された後に、トップページに遷移するようにします。
     setShowModal(true); // 送信が成功したらモーダルを表示
     setTimeout(() => {
       setShowModal(false); // 2秒後にモーダルを非表示に
-      router.push("/"); // その後トップページに遷移
+      router.push("/NotesShow"); // その後トップページに遷移
     }, 1000);
   };
 
   return (
     <>
+      <Header />
       {showModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen">
+          <div className="flex items-center justify-center">
             <div className="inline-block bg-purple-400 rounded p-5 text-lg text-black">
               送信しました
             </div>
           </div>
         </div>
       )}
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <div>
+        <input type="file" onChange={fileSelectedHandler} />
+        <button onClick={submitForm}>Upload</button>
+      </div>
+      <div className="flex flex-col items-center justify-center  py-2">
         <div className="max-w-md w-full space-y-8 py-6">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             メモ作成
@@ -89,7 +104,6 @@ const CreateNote = () => {
             </div>
           </form>
         </div>
-        <Home />
       </div>
     </>
   );

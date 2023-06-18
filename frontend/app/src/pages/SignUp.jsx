@@ -5,6 +5,7 @@ import getFirebaseErrorMessage from "../components/firebaseError";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AnonAuth from "../components/AnonAuth";
 import Link from "next/link";
+import axios from "axios";
 //import UserInfo, ProfileEditButton, AccountEditButton, SignOutButton from '../components/...';
 
 function SignUp() {
@@ -22,7 +23,28 @@ function SignUp() {
         setError("パスワードが一致しません。");
         return;
       }
-      await createUserWithEmailAndPassword(auth, email, password);
+      // await createUserWithEmailAndPassword(auth, email, password);
+
+
+
+
+
+
+    const result = await createUserWithEmailAndPassword(auth, email, password);
+    const firebaseUid = result.user.uid; // Firebaseから得たユーザーID
+    // Rails APIにユーザー情報を送信
+    await axios.post("/users", {
+      firebase_uid: firebaseUid,
+      username: name,
+      // 他の情報もここに追加
+    });
+
+
+
+
+
+
+
       alert("アカウントを作成しました。");
     } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
@@ -50,7 +72,7 @@ function SignUp() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-3xl font-bold text-center mb-8">
-            アカウントを作成
+            アカウントを作成※バリデーション、アカウント情報送信機能など要修正！
           </h2>
           <div className="flex flex-col space-y-4">
             <input
@@ -75,7 +97,7 @@ function SignUp() {
               onClick={signUp}
               className="px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
-              次に進む
+              登録する
             </button>
             {error && <p className="text-red-500">{error}</p>}
             <p className="border-b-2 py-6"></p>
@@ -83,7 +105,7 @@ function SignUp() {
             <p>
               すでにアカウントをお持ちですか？
               <span className="text-blue-500 cursor-pointer">
-                <Link href="/Home">サインイン</Link>
+                <Link href="/SignIn">サインイン</Link>
               </span>
             </p>
           </div>

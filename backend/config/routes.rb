@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :notes, only: %i[index create update destroy]
+      resources :notes
       resources :pictures
+      resources :users
+      resources :icons
     end
   end
 end
