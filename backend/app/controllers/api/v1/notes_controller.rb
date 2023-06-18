@@ -2,21 +2,13 @@ module Api
   module V1
     class NotesController < ApplicationController
       def index
-        if params[:user_id]
-          @notes = Note.where(user_id: params[:user_id])
-        else
-          @notes = Note.all
-        end
+        @notes = if params[:user_id]
+                   Note.where(user_id: params[:user_id])
+                 else
+                   Note.all
+                 end
 
-        @notes_with_image_url = @notes.map do |note|
-          if note.image.attached?
-            note.as_json.merge(image_url: url_for(note.image))
-          else
-            note.as_json
-          end
-        end
-
-        render json: @notes_with_image_url
+        render json: notes_with_image_urls(@notes)
       end
 
       def show
@@ -30,7 +22,7 @@ module Api
         @note.image.attach(params[:note][:image]) if params[:note][:image]
 
         if @note.save
-          render json: @note.as_json.merge(image_url: url_for(@note.image)), status: :created
+          render json: json_with_image_url(@note), status: :created
         else
           render json: @note.errors, status: :unprocessable_entity
         end
@@ -62,6 +54,23 @@ module Api
         params.require(:note).permit(:title, :content, :user_id, :image)
       end
 
+      def notes_with_image_urls(notes)
+        notes.map do |note|
+          if note.image.attached?
+            note.as_json.merge(image_url: url_for(note.image))
+          else
+            note.as_json
+          end
+        end
+      end
+
+      def json_with_image_url(note)
+        if note.image.attached?
+          note.as_json.merge(image_url: url_for(note.image))
+        else
+          note
+        end
+      end
     end
   end
 end
