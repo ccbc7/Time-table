@@ -5,7 +5,7 @@ import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
 import useRequireLogin from "@/components/useRequireLogin";
 
-const users = () => {
+const Users = () => {
   useRequireLogin();
   const [users, setUsers] = useState([]);
   const [userPhoto, setUserPhoto] = useState("");
@@ -65,4 +65,4 @@ const users = () => {
   );
 };
 
-export default users;
+export default Users;
