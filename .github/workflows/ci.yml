@@ -29,6 +29,10 @@ jobs:
         with:
           ruby-version: 3.1.2
           bundler-cache: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libvips42
 
       - name: Bundle install
         run: bundle install
