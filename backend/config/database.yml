@@ -10,9 +10,12 @@ development:
   username: <%= ENV["MYSQL_USERNAME_LOCAL"] %>
   password: <%= ENV["MYSQL_PASSWORD_LOCAL"] %>
 
-# test:
-#   <<: *default
-#   database: backend_test
+test:
+  <<: *default
+  database: backend_test
+  host: <%= ENV["MYSQL_HOST_ECS"] || "mydb" %>
+  username: <%= ENV["MYSQL_USERNAME_LOCAL"] %>
+  password: <%= ENV["MYSQL_PASSWORD_LOCAL"] %>
 
 production:
   <<: *default
