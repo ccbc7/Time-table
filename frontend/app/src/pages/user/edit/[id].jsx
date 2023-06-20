@@ -11,7 +11,7 @@ const EditUser = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(`/users/${id}`);
+      const response = await axios.get(`/users/${id}`); 
       setUser(response.data);
     };
 
