@@ -100,7 +100,6 @@ const CreateNote = () => {
           </div>
         </div>
       )}
-
       <div className="border-2 min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md -mt-32">
           <h3 className="text-center text-3xl mb-2">プロフィール</h3>
@@ -115,34 +114,47 @@ const CreateNote = () => {
               )}
             </div>
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center my-8">
               <input
                 type="file"
                 onChange={fileSelectedHandler}
                 className="flex justify-center items-center"
               />
             </div>
+            <table className="w-full">
+              <tbody>
+                <tr>
+                  <th className="text-right pr-2">
+                    <label className="self-center">担当:</label>
+                  </th>
+                  <td className="text-center">
+                    <input
+                      {...register("bio")}
+                      type="text"
+                      name="bio"
+                      className="px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                      placeholder="担当（例:6年1組）"
+                    />
+                  </td>
+                </tr>
 
-            <div className="py-2 flex justify-center items-center mt-8">
-              <input
-                {...register("bio")}
-                type="text"
-                name="bio"
-                className=" px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                placeholder="担当（例:6年1組）"
-              />
-            </div>
-
-            <div className="py-2 flex justify-center items-center">
-              <input
-                {...register("username")}
-                type="text"
-                name="username"
-                className=" px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-                placeholder="ユーザーネーム"
-              />
-            </div>
-            <div className="flex justify-center items-center">
+                <tr>
+                  <th className="text-right pr-2">
+                    <label className="self-center">ユーザーネーム:</label>
+                  </th>
+                  <td className="text-center">
+                    <input
+                      {...register("username")}
+                      type="text"
+                      name="username"
+                      className="px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                      placeholder="ユーザーネーム"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="flex justify-center items-center my-8">
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded"
