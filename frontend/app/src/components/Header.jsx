@@ -13,8 +13,11 @@ const navigation = [
   { name: "本日の予定", href: "#", current: false },
   { name: "予約", href: "#", current: false },
   { name: "予定確認", href: "#", current: false },
-  { name: "施設登録", href: "#", current: false },
+  { name: "施設登録", href: "/LocationCreate", current: false },
+  { name: "登録した施設", href: "/LocationShow", current: false },
+  { name: "施設一覧", href: "/LocationAll", current: false },
 ];
+
 const userNavigation = [
   { name: "プロフィール", href: "/Usernote" },
   { name: "アカウント設定", href: "#" },
@@ -30,22 +33,23 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
 export default function Example() {
   const [user] = useAuthState(auth);
   const router = useRouter();
-  const photoUrl = user
-  ? user.photoURL || "/default_profile2.png"
-  : "/default_profile2.png"; //
+  // const [photoUrl, setPhotoUrl] = useState(
+  //   user ? user.photoURL : "/default_profile2.png"
+  // );
+  const [photoUrl, setPhotoUrl] = useState(
+    user && user.photoURL ? user.photoURL : "/default_profile2.png"
+  );//
+
   const handleSignOut = () => {
     auth
       .signOut()
       .then(() => {
-        // ログアウト成功後、ホームページへリダイレクト
         router.push("/");
       })
       .catch((error) => {
-        // エラーハンドリング
         console.error("ログアウトエラー：", error);
       });
   };
@@ -53,17 +57,27 @@ export default function Example() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    let unSub;
     const fetchUsers = async (userId) => {
       const response = await axios.get(`/users?user_id=${userId}`);
       setUsers(response.data);
     };
 
-    const unSub = auth.onAuthStateChanged((user) => {
+  if (user) {
+    fetchUsers(user.uid);
+    setPhotoUrl(user.photoURL ? user.photoURL : "/default_profile2.png");
+    unSub = auth.onAuthStateChanged((user) => {
       if (user) fetchUsers(user.uid);
     });
+  }
 
-    return () => unSub(); // Clean up
-  }, []);
+    // Clean up
+  return () => {
+    if (unSub) {
+      unSub();
+    }
+  };
+  }, [user]);
 
   return (
     <>
@@ -133,12 +147,12 @@ export default function Example() {
                                   <span className="sr-only">
                                     Open user menu
                                   </span>
-                                  {users.length > 0 ? (
+                                  {users.length > 0 ? ( //
                                     <ul>
                                       {users.map((user) => (
                                         <li key={user.id}>
                                           <img
-                                            src={user.image_url}
+                                            src={user.image_url || "/default_profile2.png"}
                                             className="h-8 rounded-full"
                                           />
                                         </li>
