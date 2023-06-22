@@ -6,7 +6,8 @@ import { auth } from "../utils/firebase";
 import UserNoteShow from "@/pages/UserNoteShow";
 import { useForm } from "react-hook-form";
 import useRequireLogin from "@/components/useRequireLogin";
-
+import Link from "next/link";
+import Modal from "@/components/Modal";
 
 const CreateNote = () => {
   useRequireLogin();
@@ -15,8 +16,12 @@ const CreateNote = () => {
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false); // new state variable
   const router = useRouter();
-
-  const { register, handleSubmit, errors, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const fileSelectedHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -79,26 +84,28 @@ const CreateNote = () => {
       image_url: response.data.image_url,
     });
 
+    setSubmitted(true);
     setShowModal(true);
     // setSubmitted(true); // set this to true after form is submitted
 
     setTimeout(() => {
       setShowModal(false);
       window.location.reload();
-    }, 1);
+    }, 1000);
+  };
+  const rules = {
+    required: "入力してください",
+    maxLength: { value: 20, message: `20文字以内で入力してください。` },
   };
 
   return (
     <>
       <Header />
-      {showModal && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center">
-            <div className="inline-block bg-purple-400 rounded p-5 text-lg text-black">
-              送信しました
-            </div>
-          </div>
-        </div>
+      {submitted && (
+        <Modal
+          open={showModal}
+          onClose={() => setShowModal(false)}
+        />
       )}
       <div className="border-2 min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md -mt-32">
@@ -129,12 +136,15 @@ const CreateNote = () => {
                   </th>
                   <td className="text-center">
                     <input
-                      {...register("bio")}
+                      {...register("bio", rules)}
                       type="text"
                       name="bio"
                       className="px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                       placeholder="担当（例:6年1組）"
                     />
+                    {errors.bio && (
+                      <p className="text-red-500">{errors.bio.message}</p>
+                    )}
                   </td>
                 </tr>
 
@@ -144,12 +154,15 @@ const CreateNote = () => {
                   </th>
                   <td className="text-center">
                     <input
-                      {...register("username")}
+                      {...register("username", rules)}
                       type="text"
                       name="username"
                       className="px-3 py-2 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
                       placeholder="ユーザーネーム"
                     />
+                    {errors.bio && (
+                      <p className="text-red-500">{errors.bio.message}</p>
+                    )}
                   </td>
                 </tr>
               </tbody>
@@ -157,12 +170,20 @@ const CreateNote = () => {
             <div className="flex justify-center items-center my-8">
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded"
+                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded w-96"
               >
                 更新する
               </button>
             </div>
           </form>
+          <div className="flex justify-center items-center ">
+            <Link
+              href="/"
+              className="px-4 py-2 cursor-pointer text-black hover:text-blue-500"
+            >
+              Topに戻る
+            </Link>
+          </div>
         </div>
       </div>
     </>
