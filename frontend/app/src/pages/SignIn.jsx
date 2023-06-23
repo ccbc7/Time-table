@@ -34,7 +34,7 @@ function SignIn() {
             console.error("User not found");
             const newUser = {
               user_id: userId,
-              // image: "/default_profile2.png",
+              username: "ユーザー",
             };
             const response = await axios.post("/users", newUser);
             setUser(response.data);
@@ -100,7 +100,6 @@ function SignIn() {
 
   const sendUserIdToServer = async (userId) => {
     try {
-      // const response = await axios.post("/users", { firebase_uid: userId });
       console.log(response.data);
       alert("送信しました");
     } catch (error) {
@@ -108,7 +107,6 @@ function SignIn() {
     }
   };
 
-  // ... the rest of your code
   return (
     <>
       <Header />
