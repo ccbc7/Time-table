@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :icons
       get 'locations/all', to: 'locations#all'
       resources :locations
-      resources :reserbations
+      resources :reservations
     end
   end
 end
