@@ -1,33 +1,25 @@
 module Api
   module V1
     class LocationsController < ApplicationController
-      # before_action :set_user, only: [:create, :edit, :destroy]
       before_action :set_user, only: [:create, :edit, :update, :destroy]
+      before_action :set_location, only: [:show, :edit, :update, :destroy]
 
-      # before_action :set_user
-      before_action :set_location, only: [:show, :update, :destroy]
+      def all
+        @locations = Location.all
+        render json: locations_with_image_urls(@locations)
+      end
 
-      # GET /locations/all
-def all
-  @locations = Location.all
-  render json: locations_with_image_urls(@locations)
-end
-
-
-      # GET /users/:user_id/locations
       def index
         @user = User.find_by(user_id: params[:user_id])
         @locations = @user.locations
         render json: locations_with_image_urls(@locations)
       end
 
-      # GET /users/:user_id/locations/:id
       def show
-        # @user = User.find_by(user_id: params[:user_id])
         @location = Location.find_by(id: params[:id])
+        render json: location_with_image_url(@location)
       end
 
-      # POST /users/:user_id/locations
       def create
         Rails.logger.debug("create params: #{params.inspect}")
         @user = User.find_by(user_id: params[:location][:user_id])
@@ -45,14 +37,12 @@ end
         end
       end
 
-      # PUT /users/:user_id/locations/:id
       def update
         @location.update(location_params)
         @location.image.attach(params[:location][:image]) if params[:location][:image]
         render json: location_with_image_url(@location), status: :ok
       end
 
-      # DELETE /users/:user_id/locations/:id
       def destroy
         @location.destroy
         head :no_content
@@ -64,22 +54,21 @@ end
         params.require(:location).permit(:location_name,:image, :user_id)
       end
 
-def set_user
-  p "Full parameters: #{params.inspect}"
-  if params[:location]
-    @user = User.find_by(user_id: params[:location][:user_id])
-    p "Provided user_id: #{params[:location][:user_id]}"
-  else
-    @user = User.find_by(user_id: params[:user_id])
-    p "Provided user_id: #{params[:user_id]}"
-  end
-  p "User found: #{@user}"
-  unless @user
-    render json: { error: 'User not found' }, status: 404
-    return
-  end
-end
-
+      def set_user
+        p "Full parameters: #{params.inspect}"
+        if params[:location]
+          @user = User.find_by(user_id: params[:location][:user_id])
+          p "Provided user_id: #{params[:location][:user_id]}"
+        else
+          @user = User.find_by(user_id: params[:user_id])
+          p "Provided user_id: #{params[:user_id]}"
+        end
+        p "User found: #{@user}"
+        unless @user
+          render json: { error: 'User not found' }, status: 404
+          return
+        end
+      end
 
       def set_location
         @location = @user.locations.find_by!(id: params[:id]) if @user
@@ -91,14 +80,13 @@ end
         end
       end
 
-def location_with_image_url(location)
-  if location.image.attached?
-    location.as_json.merge(image_url: url_for(location.image), username: location.user.username)
-  else
-    location.as_json.merge(username: location.user.username)
-  end
-end
-
+      def location_with_image_url(location)
+        if location.image.attached?
+          location.as_json.merge(image_url: url_for(location.image), username: location.user.username)
+        else
+          location.as_json.merge(username: location.user.username)
+        end
+      end
     end
   end
 end
