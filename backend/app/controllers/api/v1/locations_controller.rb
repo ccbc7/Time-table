@@ -51,7 +51,7 @@ module Api
       private
 
       def location_params
-        params.require(:location).permit(:location_name,:image, :user_id)
+        params.require(:location).permit(:location_name,:image, :user_id, :location_info)
       end
 
       def set_user
