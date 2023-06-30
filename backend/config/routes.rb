@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'locations/all', to: 'locations#all'
       resources :locations
       resources :reservations
+      resources :hours
     end
   end
 end
