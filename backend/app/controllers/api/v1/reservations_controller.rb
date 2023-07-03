@@ -15,7 +15,7 @@ module Api
           location = Location.eager_load_image.find(reservation.location_id)
           reservation.as_json.merge(
             location: location.as_json_with_image_url,
-            message1: location.created_at.to_s(:datetime_jp_reserve),
+            message1: location.created_at.to_fs(:datetime_jp_reserve),
             message2: "#{location.location_name}が予約されました"
           )
         end
