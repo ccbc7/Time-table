@@ -3,14 +3,12 @@ module Api
     class HoursController < ApplicationController
       before_action :set_hour, only: [:update]
 
-      # GET /hours
       def index
         @hours = Hour.all
 
         render json: @hours
       end
 
-      # PATCH/PUT /hours/1
       def update
         if @hour.update(hour_params)
           render json: @hour
@@ -21,12 +19,10 @@ module Api
 
       private
 
-      # Use callbacks to share common setup or constraints between actions.
       def set_hour
         @hour = Hour.find(params[:id])
       end
 
-      # Only allow a list of trusted parameters through.
       def hour_params
         params.require(:hour).permit(:period)
       end
