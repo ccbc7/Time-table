@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :location do
-    user_id { "MyString" }
-    location_name { "MyString" }
+    user
+    location_name { "サンプル施設1" }
+    location_info { "サンプル施設情報1" }
   end
 end

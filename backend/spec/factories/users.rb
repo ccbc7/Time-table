@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
-    firebase_uid { "MyString" }
-      sequence(:username) { |n| "test_user#{n}" } # ユニークなユーザー名を生成するためのシーケンス
-      sequence(:user_id) { |n| n } # ユニークなユーザーIDを生成するためのシーケンス
-      bio { "This is a bio" }
+    # sequence(:user_id) { |n| "testuser#{n}" }
+    sequence(:user_id, 1000) { |n| "testuser#{n}" }
+    username { "テストユーザー" }
+    bio {"担当"}
   end
 end

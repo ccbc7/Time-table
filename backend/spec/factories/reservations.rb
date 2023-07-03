@@ -1,8 +1,23 @@
+# FactoryBot.define do
+#   factory :reservation do
+#     location
+#     user
+#     period { "1時間目" }
+#     date { "2023-07-01" }
+#     booked_user_id { nil }
+#     facility_user_name { "3年" }
+#     purpose { "授業" }
+#   end
+# end
+
 FactoryBot.define do
   factory :reservation do
-    user { nil }
-    location { nil }
-    period { "MyString" }
-    date { "2023-06-20" }
+    association :location
+    association :user
+    period { "1時間目" }
+    date { "2023-07-01" }
+    booked_user_id { nil }
+    facility_user_name { "3年" }
+    purpose { "授業" }
   end
 end
