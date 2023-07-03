@@ -33,68 +33,68 @@ const locations = () => {
       <Header />
       <h1 className="text-3xl text-center font-bold">登録した施設</h1>
       <div className="my-4 flex justify-center">
-        <table className="border-black">
+        <table className="">
           <thead>
             <tr>
-              <th className="border border-black px-4 py-2 bg-violet-200">
+              <th className="border px-4 py-2 bg-violet-200">
                 ID
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
+              <th className="border px-4 py-2 bg-violet-200">
                 イメージ
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
+              <th className="border px-4 py-2 bg-violet-200">
                 施設名
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
+              <th className="border px-4 py-2 bg-violet-200">
                 登録ユーザー
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
+              <th className="border px-4 py-2 bg-violet-200">
                 作成日時
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
+              <th className="border px-4 py-2 bg-violet-200">
                 予約する
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                削除
+              <th className="border px-4 py-2 bg-violet-200">
+                削除する
               </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                編集
+              <th className="border px-4 py-2 bg-violet-200">
+                編集する
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             {locations.map((location) => (
               <tr key={location.id}>
-                  <td className="border border-black px-4 py-2">{location.id}</td>
-                <td className="border border-black px-4 py-2">
+                <td className="border  px-4 py-2">{location.id}</td>
+                <td className="border  px-4 py-2">
                   <img
                     src={location.image_url}
                     alt={location.title}
                     className="h-10"
                   />
                 </td>
-                <td className="border border-black px-4 py-2">
+                <td className="border  px-4 py-2">
                   {location.location_name}
                 </td>
-                <td className="border border-black px-4 py-2">
+                <td className="border  px-4 py-2">
                   {location.username}
                 </td>
-                <td className="border border-black px-4 py-2">
+                <td className="border  px-4 py-2">
                   {new Intl.DateTimeFormat("ja-JP", {
-                    dateStyle: "full",
-                    timeStyle: "medium",
+                    dateStyle: "short",
+                    timeStyle: "short",
                   }).format(new Date(location.created_at))}
                 </td>
-                <td className="border border-black px-4 py-2">
-                  <Link href={`/edit/${location.id}`}>予約</Link>
+                <td className="border  px-4 py-2">
+                  <Link href={`/ReservationCreate/${location.id}`}>予約</Link>
                 </td>
-                <td className="border border-black px-4 py-2">
+                <td className="border  px-4 py-2">
                   <button onClick={() => deleteLocation(location.id)}>
                     削除
                   </button>
                 </td>
-                <td className="border border-black px-4 py-2">
-                  <Link href={`location/edit/${location.id}`}>編集</Link>
+                <td className="border  px-4 py-2">
+                  <Link href={`Location/edit/${location.id}`}>編集</Link>
                 </td>
               </tr>
             ))}
