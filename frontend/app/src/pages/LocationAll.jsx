@@ -3,22 +3,32 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
+import { useRouter } from "next/router";
+import Footer from "@/components/Footer";
 
 const LocationAll = () => {
+  const router = useRouter();
   const [locations, setLocations] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(router.query.q || "");
 
   useEffect(() => {
-    const fetchLocations = async (userId) => {
-      const response = await axios.get("/locations/all");
+    const fetchLocations = async () => {
+      const response = await axios.get("/locations/all", {
+        params: {
+          q: {
+            location_name_cont: searchQuery,
+          },
+        },
+      });
       setLocations(response.data);
     };
 
     const unSub = auth.onAuthStateChanged((user) => {
-      if (user) fetchLocations(user.uid); // ログインしている場合はノートを取得
+      if (user) fetchLocations();
     });
 
-    return () => unSub(); // Clean up
-  }, []);
+    return () => unSub();
+  }, [searchQuery]);
 
   const deleteLocation = async (id) => {
     if (window.confirm("本当に削除しますか？")) {
@@ -31,61 +41,32 @@ const LocationAll = () => {
   return (
     <>
       <Header />
-      <h1 className="text-3xl text-center font-bold">施設一覧</h1>
-      <div className="my-4 flex justify-center">
-        <table className="border-black">
-          <thead>
-            <tr>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                ID
-              </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                イメージ
-              </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                施設名
-              </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                登録ユーザー
-              </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                作成日時
-              </th>
-              <th className="border border-black px-4 py-2 bg-violet-200">
-                予約する
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {locations.map((location) => (
-              <tr key={location.id}>
-                <td className="border border-black px-4 py-2">{location.id}</td>
-                <td className="border border-black px-4 py-2">
-                  <img
-                    src={location.image_url}
-                    alt={location.title}
-                    className="h-10"
-                  />
-                </td>
-                <td className="border border-black px-4 py-2">
-                  {location.location_name}
-                </td>
-                <td className="border border-black px-4 py-2">
-                  {location.username}
-                </td>
-                <td className="border border-black px-4 py-2">
-                  {new Intl.DateTimeFormat("ja-JP", {
-                    dateStyle: "full",
-                    timeStyle: "medium",
-                  }).format(new Date(location.created_at))}
-                </td>
-                <td className="border border-black px-4 py-2">
-                  <Link href={`/edit/${location.id}`}>予約</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <h1 className="text-3xl text-center font-bold mt-3">施設一覧</h1>
+      <p className="text-center my-3">◆予約する施設を選んでください</p>
+      <div className="text-center border-b">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="border border-gray-300 px-2 py-1 rounded my-3"
+          placeholder="施設を検索"
+        />
+      </div>
+      <div className="flex justify-center flex-wrap">
+        {locations.map((location) => (
+          <div key={location.id} className="mx-4 my-2">
+            <Link href={`/Location/Confirm/${location.id}`}>
+              <img
+                src={location.image_url}
+                alt={location.title}
+                className="w-32 h-24 object-cover object-center rounded-md hover:ring-4 ring-indigo-300 overflow-hidden transform transition-all duration-400 ease-in-out hover:scale-102"
+              />
+              <div className="text-center mt-2">
+                <p>{location.location_name}</p>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
       <div className="text-center">
         <Link href="/LocationCreate">
@@ -94,6 +75,7 @@ const LocationAll = () => {
           </button>
         </Link>
       </div>
+      <Footer />
     </>
   );
 };
