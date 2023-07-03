@@ -6,13 +6,13 @@
 // module.exports = nextConfig
 
 
-/** @type {import('next').NextConfig} */ 
+/** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
-      poll: 1000, // Check for changes every second
-      aggregateTimeout: 300, // delay before rebuilding
+      poll: 1000,
+      aggregateTimeout: 300,
     };
     return config;
   },
