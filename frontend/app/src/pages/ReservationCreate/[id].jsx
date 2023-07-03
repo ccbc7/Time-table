@@ -28,10 +28,12 @@ const ReservationCreate = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const selectedDate = watch("date"); // 日付フィールドの値を監視
-  const selectedPeriod = watch("period"); // 時限フィールドの値を監視
+  const selectedDate = watch("date");
+  const selectedPeriod = watch("period");
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [hours, setHours] = useState([]);
+
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -41,17 +43,13 @@ const ReservationCreate = () => {
     fetchReservations();
   }, []);
 
-  const hours = [
-    "朝",
-    "1時間目",
-    "2時間目",
-    "3時間目",
-    "4時間目",
-    "昼休み",
-    "5時間目",
-    "6時間目",
-    "放課後",
-  ];
+  useEffect(() => {
+    const fetchHours = async () => {
+      const response = await axios.get("/hours");
+      setHours(response.data);
+    };
+    fetchHours();
+  }, []);
 
   const [days, setDays] = useState([]);
 
@@ -67,7 +65,6 @@ const ReservationCreate = () => {
         const date = toDateString(new Date(reservation.date));
         const hour = reservation.period;
         const key = `${date}-${hour}`;
-
         reservationsMap[key] = reservation;
       }
       setReservationsMap(reservationsMap);
@@ -162,7 +159,6 @@ const ReservationCreate = () => {
 
     setSubmitted(true);
     setShowModal(true);
-
     setTimeout(() => {
       setShowModal(false);
       router.push(`/ReservationIndex`);
@@ -195,37 +191,39 @@ const ReservationCreate = () => {
               </tr>
             </thead>
             <tbody className="border">
-              {hours.map((hour, index) => (
-                <tr key={index}>
-                  <td className="p-2 border w-20">{hour}</td>
-                  {days.map((day, dayIndex) => {
-                    const date = toDateString(day.date);
-                    const key = `${date}-${hour}`;
-                    const reservation = reservationsMap[key];
-                    const reservationExists = reservation !== undefined;
+              {hours
+                .filter((hour) => hour.period)
+                .map((hour, index) => (
+                  <tr key={index}>
+                    <td className="p-2 border w-20">{hour.period}</td>
+                    {days.map((day, dayIndex) => {
+                      const date = toDateString(day.date);
+                      const key = `${date}-${hour.period}`;
+                      const reservation = reservationsMap[key];
+                      const reservationExists = reservation !== undefined;
 
-                    return (
-                      <td
-                        key={index}
-                        className={`p-2 border ${
-                          reservationExists
-                            ? "bg-red-50" // 予約がある場合の背景色
-                            : toDateString(day.date) === selectedDate &&
-                              hour === selectedPeriod
-                            ? "bg-green-100" // 選択された日付と時限の場合の背景色
-                            : toDateString(day.date) === todayString
-                            ? "bg-cyan-50"
-                            : ""
-                        }`}
-                      >
-                        {reservationExists
-                          ? reservation.facility_user_name
-                          : "---"}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
+                      return (
+                        <td
+                          key={index}
+                          className={`p-2 border ${
+                            reservationExists
+                              ? "bg-red-50"
+                              : toDateString(day.date) === selectedDate &&
+                                hour.period === selectedPeriod
+                              ? "bg-green-200"
+                              : toDateString(day.date) === todayString
+                              ? "bg-cyan-50"
+                              : ""
+                          }`}
+                        >
+                          {reservationExists
+                            ? reservation.facility_user_name
+                            : "---"}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
             </tbody>
           </table>
           <div className="flex justify-center mb-5 mt-3 border-b pb-3">
@@ -266,15 +264,13 @@ const ReservationCreate = () => {
                 className="px-3 py-2 border border-gray-300 rounded-md w-60 focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
               >
                 <option value="">選択してください</option>
-                <option value="1時間目">朝</option>
-                <option value="1時間目">1時間目</option>
-                <option value="2時間目">2時間目</option>
-                <option value="3時間目">3時間目</option>
-                <option value="4時間目">4時間目</option>
-                <option value="昼休み">昼休み</option>
-                <option value="5時間目">5時間目</option>
-                <option value="6時間目">6時間目</option>
-                <option value="放課後">放課後</option>
+                {hours
+                  .filter((hour) => hour.period)
+                  .map((hour, index) => (
+                    <option key={index} value={hour.period}>
+                      {hour.period}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="flex justify-center items-center mb-2">
