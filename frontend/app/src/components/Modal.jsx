@@ -2,7 +2,10 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
-export default function Example() {
+export default function Example({
+  title = "更新しました",
+  description = "あなたの情報は正常に更新されました。",
+}) {
   const [open, setOpen] = useState(true);
 
   const cancelButtonRef = useRef(null);
@@ -52,24 +55,15 @@ export default function Example() {
                         as="h3"
                         className="text-base font-semibold leading-6 text-gray-900"
                       >
-                        更新しました
+                        {title}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          あなたの情報は正常に更新されました。
-                        </p>
+                        <p className="text-sm text-gray-500">{description}</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="bg-green-100 px-4 py-4 sm:flex sm:flex-row-reverse sm:px-6">
-                  {/* <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                  >
-                    OK
-                  </button> */}
                 </div>
               </Dialog.Panel>
             </Transition.Child>
