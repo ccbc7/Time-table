@@ -25,7 +25,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./backend:/app #
+      - ./backend:/app 
     command: rails server -b 0.0.0.0
   frontend:
     build:

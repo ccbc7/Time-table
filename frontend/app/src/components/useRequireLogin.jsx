@@ -8,14 +8,11 @@ export const useRequireLogin = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        // ユーザーはログインしている
       } else {
-        // ユーザーはログインしていない
         router.push("/SignIn");
       }
     });
 
-    // cleanup function
     return () => unsubscribe();
   }, []);
 };

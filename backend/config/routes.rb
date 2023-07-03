@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       resources :pictures
       resources :users
       resources :icons
+      get 'locations/all', to: 'locations#all'
+      resources :locations
+      resources :reservations
+      resources :hours
     end
   end
 end

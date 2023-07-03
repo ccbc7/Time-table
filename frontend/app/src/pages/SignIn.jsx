@@ -11,13 +11,20 @@ import { auth } from "../utils/firebase";
 import Link from "next/link";
 import Header from "../components/Header";
 import axios from "axios";
+import { useRouter } from "next/router";
+import Modal from "@/components/Modal";
+import Footer from "@/components/Footer";
 
 function SignIn() {
+  const router = useRouter();
   const auth = getAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalDescription, setModalDescription] = useState("");
 
   useEffect(() => {
     const unSub = auth.onAuthStateChanged(async (authUser) => {
@@ -34,7 +41,7 @@ function SignIn() {
             console.error("User not found");
             const newUser = {
               user_id: userId,
-              // image: "/default_profile2.png",
+              username: "ユーザー",
             };
             const response = await axios.post("/users", newUser);
             setUser(response.data);
@@ -46,16 +53,21 @@ function SignIn() {
         setUser(null);
       }
     });
-
-    return () => unSub();
+  return () => unSub();
   }, []);
 
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      alert("ログイン成功");
+      setModalTitle("ログイン成功");
+      setModalDescription("グーグルアカウントでログインしました。");
       await sendUserIdToServer(result.user.uid);
-    } catch (e) {
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/");
+      }, 1000);
+} catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
         e,
         "signin",
@@ -69,8 +81,13 @@ function SignIn() {
   const signInWithEmail = async () => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      alert("ログイン成功");
-      await sendUserIdToServer(result.user.uid);
+      setModalTitle("ログイン成功");
+      setModalDescription("メールアドレスとパスワードでログインしました。");
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/");
+      }, 1000);
     } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
         e,
@@ -85,8 +102,14 @@ function SignIn() {
   const signInAsGuest = async () => {
     try {
       const result = await signInAnonymously(auth);
-      alert("ゲストとしてログインしました");
+      setModalTitle("ログイン成功");
+      setModalDescription("ゲストとしてログインしました。");
       await sendUserIdToServer(result.user.uid);
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/ProfileEdit");
+      }, 1000);
     } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
         e,
@@ -100,7 +123,7 @@ function SignIn() {
 
   const sendUserIdToServer = async (userId) => {
     try {
-      // const response = await axios.post("/users", { firebase_uid: userId });
+      const response = await axios.post("/users", { userId });
       console.log(response.data);
       alert("送信しました");
     } catch (error) {
@@ -108,29 +131,20 @@ function SignIn() {
     }
   };
 
-  // ... the rest of your code
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      {showModal && (
+        <Modal
+          open={showModal}
+          onClose={() => setShowModal(false)}
+          title={modalTitle}
+          description={modalDescription}
+        />
+      )}
+      <div className="bg-gray-100 flex items-center justify-center pt-10">
         {user ? (
-          <>
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md -mt-80">
-              <UserInfo />
-              <div className="flex flex-col space-y-4 mt-4">
-                <Link href="Usernote" className="flex">
-                  <button
-                    onClick={() => console.log("Profile Edit Button Clicked")}
-                    className="flex-grow px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 transition duration-150 ease-in-out"
-                  >
-                    プロフィールを編集する
-                  </button>
-                </Link>
-                <AccountEditButton />
-                <SignOutButton />
-              </div>
-            </div>
-          </>
+          <></>
         ) : (
           <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
             <h2 className="text-3xl font-bold text-center mb-8">サインイン</h2>
@@ -172,6 +186,7 @@ function SignIn() {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }
@@ -186,51 +201,5 @@ function SignInButton({ signInWithGoogle }) {
     >
       グーグルでサインイン
     </button>
-  );
-}
-
-function SignOutButton() {
-  return (
-    <button
-      onClick={() => auth.signOut()}
-      className="flex-grow px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in-out"
-    >
-      サインアウト
-    </button>
-  );
-}
-
-function UserInfo() {
-  const photoUrl = auth.currentUser.photoURL || "/default_profile2.png";
-  const displayName = auth.currentUser.displayName || "ユーザー";
-  return (
-    <div className="flex items-center space-x-4 justify-center">
-      <img src={photoUrl} alt="user" className="h-10 w-10 rounded-full" />
-      <p className="text-lg font-bold">ようこそ！ {displayName} さん</p>
-    </div>
-  );
-}
-
-function ProfileEditButton() {
-  return (
-    <button
-      onClick={() => console.log("Profile Edit Button Clicked")}
-      className="flex-grow px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 transition duration-150 ease-in-out"
-    >
-      プロフィールを編集する
-    </button>
-  );
-}
-
-function AccountEditButton() {
-  return (
-    <Link href="/AccountEdit" className="flex">
-      <button
-        onClick={() => console.log("Account Edit Button Clicked")}
-        className="flex-grow px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-purple-500 hover:bg-purple-600 transition duration-150 ease-in-out"
-      >
-        アカウント設定
-      </button>
-    </Link>
   );
 }

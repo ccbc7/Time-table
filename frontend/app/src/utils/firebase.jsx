@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApps } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
@@ -20,12 +19,9 @@ const firebaseConfig = {
 if (!getApps().length) {
   initializeApp(firebaseConfig);
 }
-const app = getApps()[0]; // Grab the already initialized app
-
-// const analytics = getAnalytics(app);
+const app = getApps()[0];
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
 export { auth, provider };
 
 export default app;
