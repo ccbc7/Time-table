@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { auth } from "@/utils/firebase";
 
-export const UseRequireLogin = () => {
+export const useRequireLogin = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -17,4 +17,4 @@ export const UseRequireLogin = () => {
   }, []);
 };
 
-export default UseRequireLogin;
+export default useRequireLogin;

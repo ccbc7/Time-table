@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import { auth } from "../utils/firebase";
 import { useForm } from "react-hook-form";
-import useRequireLogin from "@/components/UseRequireLogin";
+import useRequireLogin from "@/components/useRequireLogin";
 import Link from "next/link";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";

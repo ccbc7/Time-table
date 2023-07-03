@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../utils/firebase";
-import getFirebaseErrorMessage from "../components/FirebaseError";
+import getFirebaseErrorMessage from "../components/firebaseError";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AnonAuth from "../components/AnonAuth";
 import Link from "next/link";
