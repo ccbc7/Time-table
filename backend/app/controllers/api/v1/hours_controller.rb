@@ -5,7 +5,6 @@ module Api
 
       def index
         @hours = Hour.all
-
         render json: @hours
       end
 
