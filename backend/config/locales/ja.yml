@@ -2,12 +2,30 @@ ja:
   activerecord:
     errors:
       models:
+        location:
+          attributes:
+            location_name:
+              blank: "を入力してください"
+            location_info:
+              blank: "を入力してください"
+            user_id:
+              blank: "を入力してください"
+        note:
+          attributes:
+            title:
+              blank: "を入力してください"
+            content:
+              blank: "を入力してください"
+            user_id:
+              blank: "を入力してください"
+            location_id:
+              blank: "を入力してください"
         reservation:
           attributes:
             location:
               required: "を入力してください"
             location_id:
-              required: "を入力してください"
+              blank: "を入力してください"
             user:
               required: "を入力してください"
             user_id:
