@@ -4,17 +4,17 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import { auth } from "../utils/firebase";
 import { useForm } from "react-hook-form";
-import UseRequireLogin from "@/components/UseRequireLogin";
+import useRequireLogin from "@/components/UseRequireLogin";
 import Link from "next/link";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";
 
 const CreateNote = () => {
-  UseRequireLogin();
+  useRequireLogin();
   const [selectedFile, setSelectedFile] = useState(null);
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false); // new state variable
+  const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -143,7 +143,6 @@ const CreateNote = () => {
                     )}
                   </td>
                 </tr>
-
                 <tr>
                   <th className="text-right pr-2">
                     <label className="self-center">ユーザーネーム:</label>
