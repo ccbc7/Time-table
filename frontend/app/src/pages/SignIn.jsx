@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { provider } from "../utils/firebase";
 import { useState, useEffect } from "react";
-import getFirebaseErrorMessage from "../components/firebaseError";
+import getFirebaseErrorMessage from "../components/FirebaseError";
 import { auth } from "../utils/firebase";
 import Link from "next/link";
 import Header from "../components/Header";
@@ -203,4 +203,3 @@ function SignInButton({ signInWithGoogle }) {
     </button>
   );
 }
-
