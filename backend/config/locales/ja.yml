@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        reservation:
+          attributes:
+            location:
+              required: "を入力してください"
+            location_id:
+              required: "を入力してください"
+            user:
+              required: "を入力してください"
+            user_id:
+              required: "を入力してください"
+            period:
+              blank: "を入力してください"
+            date:
+              blank: "を入力してください"
+            facility_user_name:
+              blank: "を入力してください"
+            purpose:
+              blank: "を入力してください"
