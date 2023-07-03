@@ -1,22 +1,27 @@
 module Api
   module V1
     class LocationsController < ApplicationController
-      before_action :set_user, only: [:create, :edit, :update, :destroy]
-      before_action :set_location, only: [:show, :edit, :update, :destroy]
+      before_action :set_user, only: %i[create edit update destroy]
+      before_action :set_location, only: %i[show edit update destroy]
 
       def all
-        @locations = Location.all
+        @q = Location.includes(:user, image_attachment: :blob).ransack(params[:q])
+        @locations = @q.result
         render json: locations_with_image_urls(@locations)
       end
 
       def index
         @user = User.find_by(user_id: params[:user_id])
-        @locations = @user.locations
+        if @user.nil?
+          render json: { error: 'User not found' }, status: :not_found
+          return
+        end
+        @locations = @user.locations.includes(:user, image_attachment: :blob)
         render json: locations_with_image_urls(@locations)
       end
 
       def show
-        @location = Location.find_by(id: params[:id])
+        @location = Location.includes(:user, image_attachment: :blob).find_by(id: params[:id])
         render json: location_with_image_url(@location)
       end
 
@@ -51,23 +56,19 @@ module Api
       private
 
       def location_params
-        params.require(:location).permit(:location_name,:image, :user_id, :location_info)
+        params.require(:location).permit(:location_name, :image, :user_id, :location_info)
       end
 
       def set_user
-        p "Full parameters: #{params.inspect}"
-        if params[:location]
-          @user = User.find_by(user_id: params[:location][:user_id])
-          p "Provided user_id: #{params[:location][:user_id]}"
-        else
-          @user = User.find_by(user_id: params[:user_id])
-          p "Provided user_id: #{params[:user_id]}"
-        end
-        p "User found: #{@user}"
-        unless @user
-          render json: { error: 'User not found' }, status: 404
-          return
-        end
+        @user = if params[:location]
+                  User.find_by(user_id: params[:location][:user_id])
+                else
+                  User.find_by(user_id: params[:user_id])
+                end
+        return if @user
+
+        render json: { error: 'User not found' }, status: 404
+        nil
       end
 
       def set_location
