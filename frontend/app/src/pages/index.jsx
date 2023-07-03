@@ -1,29 +1,48 @@
 import Header from "@/components/Header";
-import UserInfo from "@/components/UserImage";
 import Link from "next/link";
+import AllCalendar from "@/pages/AllCalendar";
+import { auth } from "@/utils/firebase";
+import { useState, useEffect } from "react";
+import Footer from "@/components/Footer";
+import SubMenu from "@/components/SubMenu";
+import HeaderWithSlider from "@/components/HeaderWithSlider";
 
 function index() {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <>
       <div>
         <Header />
-        <div className="flex justify-center items-center bg-emerald-400 lg:px-0">
-          <img
-            className="object-contain max-h-64 mx-auto h-full w-full lg:max-h-64 lg:mx-0"
-            src="/headerPanel.png"
-            alt="header panel"
-          />
-        </div>
+        <HeaderWithSlider />
       </div>
       <main>
-        <div className="flex justify-center items-center">
-          <Link href="SignIn">
-            <button className="mt-5 text-white bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-center py-8 px-20 rounded  text-lg">
-              使ってみる
-            </button>
-          </Link>
-        </div>
+        {!user ? (
+          <div className="flex justify-center items-center">
+            <Link href="SignIn">
+              <button className="my-5 text-white bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-center py-4 px-16 rounded  text-lg">
+                使ってみる
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <SubMenu />
+            <AllCalendar />
+          </>
+        )}
       </main>
+      <Footer />
     </>
   );
 }
