@@ -22,7 +22,6 @@ if (!getApps().length) {
 }
 const app = getApps()[0]; // Grab the already initialized app
 
-// const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
