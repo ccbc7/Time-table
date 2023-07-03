@@ -7,11 +7,11 @@ const EditUser = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [user, setUser] = useState(null);
   const router = useRouter();
-  const { id } = router.query; // get id from url
+  const { id } = router.query;
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(`/users/${id}`); 
+      const response = await axios.get(`/users/${id}`);
       setUser(response.data);
     };
 
@@ -35,8 +35,8 @@ const EditUser = () => {
       fd.append("user[image]", selectedFile, selectedFile.name);
     }
 
-    await axios.put(`/users/${id}`, fd); // Use axios.put to update the user
-    router.push("/Usernote");
+    await axios.put(`/users/${id}`, fd); 
+    router.push("/ProfileEdit");
   };
 
   return (
