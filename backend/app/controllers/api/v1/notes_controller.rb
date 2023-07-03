@@ -3,26 +3,26 @@ module Api
     class NotesController < ApplicationController
       def index
         @notes = if params[:user_id]
-                   Note.where(user_id: params[:user_id])
-                 else
-                   Note.all
-                 end
-
-        render json: notes_with_image_urls(@notes)
+                  Note.includes(:user, :location).where(user_id: params[:user_id])
+                elsif params[:location_id]
+                  Note.includes(:user, :location).where(location_id: params[:location_id])
+                else
+                  Note.includes(:user, :location).all
+                end
+        render json: notes_with_user_image_urls(@notes)
       end
 
       def show
         @note = Note.find(params[:id])
-        render json: @note.as_json.merge(image_url: rails_blob_url(@note.image))
+        render json: @note.as_json_with_user_image_url
       end
 
       def create
         @note = Note.new(note_params)
-        @note.user_id = params[:note][:user_id]  # リクエストから userId を取得して user_id をセット
-        @note.image.attach(params[:note][:image]) if params[:note][:image]
-
+        @note.user_id = params[:note][:user_id]
+        @note.location_id = params[:note][:location_id] if params[:note][:location_id]
         if @note.save
-          render json: json_with_image_url(@note), status: :created
+          render json: @note.as_json_with_user_image_url, status: :created
         else
           render json: @note.errors, status: :unprocessable_entity
         end
@@ -30,9 +30,8 @@ module Api
 
       def update
         @note = Note.find(params[:id])
-
         if @note.user_id == params[:note][:user_id] && @note.update(note_params)
-          render json: @note, status: :ok
+          render json: @note.as_json_with_user_image_url, status: :ok
         else
           render json: @note.errors, status: :unprocessable_entity
         end
@@ -51,24 +50,12 @@ module Api
       private
 
       def note_params
-        params.require(:note).permit(:title, :content, :user_id, :image)
+        params.require(:note).permit(:title, :content, :user_id, :location_id)
       end
 
-      def notes_with_image_urls(notes)
+      def notes_with_user_image_urls(notes)
         notes.map do |note|
-          if note.image.attached?
-            note.as_json.merge(image_url: url_for(note.image))
-          else
-            note.as_json
-          end
-        end
-      end
-
-      def json_with_image_url(note)
-        if note.image.attached?
-          note.as_json.merge(image_url: url_for(note.image))
-        else
-          note
+          note.as_json_with_user_image_url
         end
       end
     end
