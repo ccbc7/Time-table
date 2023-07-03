@@ -6,7 +6,7 @@ class Note < ApplicationRecord
   belongs_to :location
 
   def as_json(options = {})
-    super(options.merge(include: [:user, :location]))
+    super(options.merge(include: %i[user location]))
   end
 
   def as_json_with_user_image_url

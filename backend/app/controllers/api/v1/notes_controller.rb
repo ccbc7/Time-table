@@ -3,12 +3,12 @@ module Api
     class NotesController < ApplicationController
       def index
         @notes = if params[:user_id]
-                  Note.includes(:user, :location).where(user_id: params[:user_id])
-                elsif params[:location_id]
-                  Note.includes(:user, :location).where(location_id: params[:location_id])
-                else
-                  Note.includes(:user, :location).all
-                end
+                   Note.includes(:user, :location).where(user_id: params[:user_id])
+                 elsif params[:location_id]
+                   Note.includes(:user, :location).where(location_id: params[:location_id])
+                 else
+                   Note.includes(:user, :location).all
+                 end
         render json: notes_with_user_image_urls(@notes)
       end
 
@@ -54,9 +54,7 @@ module Api
       end
 
       def notes_with_user_image_urls(notes)
-        notes.map do |note|
-          note.as_json_with_user_image_url
-        end
+        notes.map(&:as_json_with_user_image_url)
       end
     end
   end
