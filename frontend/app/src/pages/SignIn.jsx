@@ -56,12 +56,6 @@ function SignIn() {
   return () => unSub();
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-  }, [user]);
-
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -71,7 +65,7 @@ function SignIn() {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        router.push("/ProfileEdit");
+        router.push("/");
       }, 1000);
 } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
@@ -92,7 +86,7 @@ function SignIn() {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        router.push("/ProfileEdit");
+        router.push("/");
       }, 1000);
     } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
@@ -210,13 +204,3 @@ function SignInButton({ signInWithGoogle }) {
   );
 }
 
-function SignOutButton() {
-  return (
-    <button
-      onClick={() => auth.signOut()}
-      className="flex-grow px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in-out"
-    >
-      サインアウト
-    </button>
-  );
-}
