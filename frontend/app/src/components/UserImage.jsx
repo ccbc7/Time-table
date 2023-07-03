@@ -6,7 +6,7 @@ function UserInfo() {
 
   const photoUrl = user
     ? user.photoURL || "/default_profile2.png"
-    : "/default_profile2.png"; //
+    : "/default_profile2.png";
   const displayName = user ? user.displayName || "ユーザー" : "ユーザー";
 
   return (

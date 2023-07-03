@@ -4,31 +4,31 @@ RSpec.describe Location, type: :model do
   let(:user) { create(:user) }
   let(:location) { create(:location, user: user) }
 
-  describe "バリデーション" do
+  describe "validation" do
     it "有効な属性が設定されていれば有効に動くこと" do
       expect(location).to be_valid
     end
 
     it "施設名が無いと無効であること" do
       location.location_name = nil
-      location.valid? 
+      location.valid?
       expect(location.errors[:location_name]).to include("を入力してください")
     end
 
     it "施設情報が無いと無効であること" do
       location.location_info = nil
-      location.valid? 
+      location.valid?
       expect(location.errors[:location_info]).to include("を入力してください")
     end
 
     it "ユーザーIDが無いと無効であること" do
       location.user_id = nil
-      location.valid? 
+      location.valid?
       expect(location.errors[:user_id]).to include("を入力してください")
     end
   end
 
-  describe "アソシエーション" do
+  describe "asotiation" do
     it "ユーザーに所属していること" do
       expect(location.user).to eq(user)
     end

@@ -1,30 +1,9 @@
-# require 'rails_helper'
-
-# RSpec.describe Reservation, type: :model do
-#   describe 'associations' do
-#     it { should belong_to(:user) }
-#     it { should belong_to(:location) }
-#   end
-
-#   describe 'validations' do
-#     subject { build(:reservation) }
-
-#     it { should validate_presence_of(:location_id) }
-#     it { should validate_presence_of(:user_id) }
-#     it { should validate_presence_of(:period) }
-#     it { should validate_presence_of(:date) }
-#     it { should validate_presence_of(:facility_user_name) }
-#     it { should validate_presence_of(:purpose) }
-#   end
-# end
-
-
 require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
   describe 'バリデーション' do
-    it '全ての属性が正しければ有効' do
-      reservation = build(:reservation)
+    it "すべての属性が正しく設定され、有効であること" do
+      reservation = FactoryBot.create(:reservation)
       expect(reservation).to be_valid
     end
 

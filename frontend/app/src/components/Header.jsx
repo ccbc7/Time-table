@@ -186,7 +186,7 @@ export default function Example() {
                               <Menu.Button className="flex max-w-xs items-center rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 {/* <Menu.Button> */}
                                 <span className="sr-only">Open user menu</span>
-                                {users.length > 0 ? ( //
+                                {users.length > 0 ? ( 
                                   <ul>
                                     {users.map((user) => (
                                       <li key={user.id}>

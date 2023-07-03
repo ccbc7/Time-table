@@ -27,7 +27,6 @@ export default async (e, method) => {
     "auth/auth-domain-config-required": "現在この認証方法はご利用頂けません",
     "auth/operation-not-allowed": "現在この認証方法はご利用頂けません",
     "auth/unauthorized-domain": "現在この認証方法はご利用頂けません",
-    // ...
     "auth/requires-recent-login": "認証の有効期限が切れています",
     default:
       method.indexOf("signin") !== -1

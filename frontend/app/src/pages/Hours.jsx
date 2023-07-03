@@ -5,10 +5,8 @@ import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import { useRouter } from "next/router";
 
-
 const HourForm = ({ hour, onUpdate, onSave }) => {
   const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -19,20 +17,19 @@ const HourForm = ({ hour, onUpdate, onSave }) => {
   });
 
   const onSubmit = async (data) => {
-  try {
-    const { period } = data;
-    const updatedHour = await axios.put(`/hours/${hour.id}`, { period });
-    onUpdate(updatedHour);
-    onSave(hour.id, data);
-    setSubmitted(true);
-    setShowModal(true);
+    try {
+      const { period } = data;
+      const updatedHour = await axios.put(`/hours/${hour.id}`, { period });
+      onUpdate(updatedHour);
+      onSave(hour.id, data);
+      setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
         router.push(`/`);
       }, 1000);
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -89,7 +86,7 @@ const HoursPage = () => {
   const [hours, setHours] = useState([]);
   const [hourUpdates, setHourUpdates] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchHours = async () => {
@@ -104,25 +101,10 @@ const HoursPage = () => {
   };
 
   const handleSave = (id, updatedHour) => {
-    setHourUpdates({
-      ...hourUpdates,
+    setHourUpdates((prevHourUpdates) => ({
+      ...prevHourUpdates,
       [id]: updatedHour,
-    });
-  };
-
-  const handleBulkUpdate = async () => {
-    const updates = Object.entries(hourUpdates).map(([id, data]) =>
-      axios.put(`/hours/${id}`, data)
-    );
-    const updatedHours = await Promise.all(updates);
-    updatedHours.forEach((updatedHour) => handleUpdate(updatedHour));
-    setHourUpdates({});
-    setSubmitted(true);
-    setShowModal(true);
-    setTimeout(() => {
-      setShowModal(false);
-      router.push(`/ReservationIndex`);
-    }, 1000);
+    }));
   };
 
   return (
@@ -146,14 +128,6 @@ const HoursPage = () => {
                 setShowModal={setShowModal}
               />
             ))}
-          </div>
-          <div className="text-center">
-            <button
-              onClick={handleBulkUpdate}
-              className="px-6 py-4 border-b border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-lime-100 transition duration-200 ease-in-out shadow-md w-60"
-            >
-              一括更新
-            </button>
           </div>
         </div>
       </div>

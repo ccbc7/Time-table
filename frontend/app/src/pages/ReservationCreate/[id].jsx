@@ -161,7 +161,7 @@ const ReservationCreate = () => {
     setShowModal(true);
     setTimeout(() => {
       setShowModal(false);
-      router.push(`/ReservationIndex`);
+      router.push(`/ReservationAll`);
     }, 1000);
   };
 

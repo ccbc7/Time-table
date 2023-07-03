@@ -68,5 +68,4 @@ RSpec.describe Api::V1::ReservationsController, type: :request do
       end
     end
   end
-  # Add other tests for #show, #update and #destroy
 end

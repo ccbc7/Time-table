@@ -8,19 +8,3 @@ export default function App({ Component, pageProps }) {
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL; //.envで設定した環境変数を参照
 axios.defaults.withCredentials = true;
 
-
-// import React, { useEffect, useState } from "react";
-// import "@/styles/globals.css";
-// import axios from "axios";
-// import { AuthProvider } from './AuthContext';  // 先ほど作成したProviderをインポート
-
-// axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL; //.envで設定した環境変数を参照
-// axios.defaults.withCredentials = true;
-
-// export default function App({ Component, pageProps }) {
-//   return (
-//     <AuthProvider>
-//       <Component {...pageProps} />
-//     </AuthProvider>
-//   );
-// }

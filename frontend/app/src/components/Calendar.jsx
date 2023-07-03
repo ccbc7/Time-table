@@ -25,8 +25,8 @@ function ReservationCreate() {
     watch,
     formState: { errors },
   } = useForm();
-  const selectedDate = watch("date"); // 日付フィールドの値を監視
-  const selectedPeriod = watch("period"); // 時限フィールドの値を監視
+  const selectedDate = watch("date"); 
+  const selectedPeriod = watch("period");
   const [hours, setHours] = useState([]);
 
   useEffect(() => {
@@ -122,7 +122,7 @@ function ReservationCreate() {
                       toDateString(day.date) === todayString
                         ? "bg-cyan-50"
                         : reservationExists
-                        ? "bg-red-50" 
+                        ? "bg-red-50"
                         : toDateString(day.date) === selectedDate &&
                           hour === selectedPeriod
                         ? "bg-green-50"

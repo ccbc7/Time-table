@@ -24,7 +24,6 @@ function Create() {
       }
     });
 
-    // Clean up subscription on unmount
     return () => unsubscribe();
   }, []);
 
@@ -36,7 +35,6 @@ function Create() {
     const fd = new FormData();
     fd.append("picture[image]", selectedFile, selectedFile.name);
 
-    // ユーザーIDをFormDataに追加
     if (userId) {
       fd.append("user_id", userId);
 

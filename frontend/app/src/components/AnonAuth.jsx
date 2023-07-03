@@ -6,15 +6,12 @@ const AnonAuth = () => {
   const handleSignInAnonymously = async () => {
     try {
       const userCredential = await signInAnonymously(auth);
-      // Signed in..
       const user = userCredential.user;
       console.log("User signed in anonymously:", user);
-      // You can access the user object here.
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Error signing in anonymously:", error);
-      // Handle error here.
     }
   };
 
