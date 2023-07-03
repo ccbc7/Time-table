@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import SubMenu from "@/components/SubMenu";
 import HeaderWithSlider from "@/components/HeaderWithSlider";
 
-function index() {
+function Index() {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -47,4 +47,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

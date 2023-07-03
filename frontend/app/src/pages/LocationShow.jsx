@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
 
-const locations = () => {
+const LocationsShow = () => {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
@@ -14,10 +14,10 @@ const locations = () => {
     };
 
     const unSub = auth.onAuthStateChanged((user) => {
-      if (user) fetchLocations(user.uid); // ログインしている場合はノートを取得
+      if (user) fetchLocations(user.uid);
     });
 
-    return () => unSub(); // Clean up
+    return () => unSub();
   }, []);
 
   const deleteLocation = async (id) => {
@@ -112,4 +112,4 @@ const locations = () => {
   );
 };
 
-export default locations;
+export default LocationsShow;

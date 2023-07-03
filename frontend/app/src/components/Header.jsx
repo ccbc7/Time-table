@@ -134,8 +134,9 @@ export default function Example() {
                           <div className="flex-shrink-0">
                             <div className="hidden md:block">
                               <div className="flex items-center space-x-4 mr-10">
-                                {navigation.map((item) => (
+                                {navigation.map((item, index) => (
                                   <Menu
+                                    key={index}
                                     as="div"
                                     className="relative inline-block text-left"
                                   >

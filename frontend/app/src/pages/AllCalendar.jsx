@@ -104,8 +104,9 @@ const ReservationCreate = () => {
               <thead>
                 <tr className="bg-lime-50 border">
                   <th className="p-2 w-20"></th>
-                  {location_names.map((location_name) => (
+                  {location_names.map((location_name, index) => (
                     <th
+                      key={index}
                       className="p-2 border w-20"
                       style={{
                         writingMode: "vertical-rl",
@@ -123,13 +124,14 @@ const ReservationCreate = () => {
                   .map((hour, index) => (
                     <tr key={index}>
                       <td className="p-2 border w-20">{hour.period}</td>
-                      {location_ids.map((location_id) => {
+                      {location_ids.map((location_id, index) => {
                         const currentReservations =
                           reservationsMap[
                             `${toDateString(day)}-${hour.period}-${location_id}`
                           ];
                         return (
                           <td
+                            key={index}
                             className={`p-2 border ${
                               toDateString(day) === selectedDate &&
                               hour === selectedPeriod
