@@ -99,10 +99,7 @@ const CreateNote = () => {
     <>
       <Header />
       {submitted && (
-        <Modal
-          open={showModal}
-          onClose={() => setShowModal(false)}
-        />
+        <Modal open={showModal} onClose={() => setShowModal(false)} />
       )}
       <div className="bg-gray-100 flex items-center justify-center pt-10">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -113,7 +110,7 @@ const CreateNote = () => {
                 <img
                   src={user.image_url}
                   alt="User profile"
-                  className="rounded-full h-32"
+                  className="aspect-content object-cover rounded-full h-32 w-32"
                 />
               )}
             </div>

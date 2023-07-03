@@ -186,7 +186,7 @@ export default function Example() {
                               <Menu.Button className="flex max-w-xs items-center rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 {/* <Menu.Button> */}
                                 <span className="sr-only">Open user menu</span>
-                                {users.length > 0 ? ( 
+                                {users.length > 0 ? (
                                   <ul>
                                     {users.map((user) => (
                                       <li key={user.id}>
@@ -195,14 +195,14 @@ export default function Example() {
                                             user.image_url ||
                                             "/default_profile2.png"
                                           }
-                                          className="h-8 rounded-full"
+                                          className="h-8 w-8 rounded-full aspect-content object-cover"
                                         />
                                       </li>
                                     ))}
                                   </ul>
                                 ) : (
                                   <img
-                                    className="h-8 w-8 rounded-full"
+                                    className="h-8 w-8 rounded-full aspect-content object-cover"
                                     src={photoUrl}
                                     alt="user"
                                   />
@@ -349,7 +349,7 @@ export default function Example() {
                             <li key={user.id}>
                               <img
                                 src={user.image_url || "/default_profile2.png"}
-                                className="h-8 w-8 rounded-full"
+                                className="h-8 w-8 rounded-full aspect-content object-cover"
                                 alt=""
                               />
                             </li>
@@ -357,7 +357,7 @@ export default function Example() {
                         </ul>
                       ) : (
                         <img
-                          className="h-8 w-8 rounded-full"
+                          className="h-8 w-8 rounded-full aspect-content object-cover"
                           src={photoUrl}
                           alt=""
                         />
