@@ -88,7 +88,7 @@ const LocationsShow = () => {
                   }).format(new Date(location.created_at))}
                 </td>
                 <td className="border  px-4 py-2">
-                  <Link href={`/ReservationCreate/${location.id}`}>予約</Link>
+                  <Link href={`/reservationCreate/${location.id}`}>予約</Link>
                 </td>
                 <td className="border  px-4 py-2">
                   <button onClick={() => deleteLocation(location.id)}>
