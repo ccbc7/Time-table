@@ -10,8 +10,8 @@ import CommentView from "@/components/CommentView";
 const LocationConfirm = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [location, setLocation] = useState(null);
   const [reservations, setReservations] = useState([]);
+  const [location, setLocation] = useState(null);
   const [hours, setHours] = useState([]);
 
   useEffect(() => {
