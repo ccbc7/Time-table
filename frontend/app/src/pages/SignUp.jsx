@@ -43,7 +43,7 @@ function SignUp() {
     setShowModal(true);
     setTimeout(() => {
       setShowModal(false);
-      router.push("/ProfileEdit");
+      router.push("/profileEdit");
     }, 1000);
     } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(
@@ -108,7 +108,7 @@ function SignUp() {
                 <p>
                   すでにアカウントをお持ちですか？
                   <span className="text-blue-500 cursor-pointer">
-                    <Link href="/SignIn">サインイン</Link>
+                    <Link href="/signIn">サインイン</Link>
                   </span>
                 </p>
               </div>

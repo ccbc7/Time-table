@@ -34,7 +34,6 @@ const ReservationCreate = () => {
   const [submitted, setSubmitted] = useState(false);
   const [hours, setHours] = useState([]);
 
-
   useEffect(() => {
     const fetchReservations = async () => {
       const response = await axios.get("/reservations");
@@ -161,7 +160,7 @@ const ReservationCreate = () => {
     setShowModal(true);
     setTimeout(() => {
       setShowModal(false);
-      router.push(`/ReservationAll`);
+      router.push(`/reservationAll`);
     }, 1000);
   };
 

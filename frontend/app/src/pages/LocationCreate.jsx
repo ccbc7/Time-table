@@ -38,7 +38,7 @@ const LocationCreate = () => {
     setShowModal(true);
     setTimeout(() => {
       setShowModal(false);
-      router.push("/LocationShow");
+      router.push("/locationShow");
     }, 1000);
   };
 

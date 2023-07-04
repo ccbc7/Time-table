@@ -30,14 +30,6 @@ const LocationAll = () => {
     return () => unSub();
   }, [searchQuery]);
 
-  const deleteLocation = async (id) => {
-    if (window.confirm("本当に削除しますか？")) {
-      const userId = auth.currentUser.uid;
-      await axios.delete(`/locations/${id}`, { data: { user_id: userId } });
-      setLocations(locations.filter((location) => location.id !== id));
-    }
-  };
-
   return (
     <>
       <Header />
@@ -69,7 +61,7 @@ const LocationAll = () => {
         ))}
       </div>
       <div className="text-center">
-        <Link href="/LocationCreate">
+        <Link href="/locationCreate">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center">
             施設を登録する
           </button>

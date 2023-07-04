@@ -52,7 +52,7 @@ const ReservationEdit = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      router.push(`/ReservationAll`);
+      router.push(`/reservationAll`);
     } catch (err) {
       if (err.response) {
         console.log("Error response data: ", err.response.data);

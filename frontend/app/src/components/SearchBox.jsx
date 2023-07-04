@@ -6,7 +6,7 @@ const Header = () => {
 
   const handleSearch = () => {
     Router.push({
-      pathname: "/LocationAll",
+      pathname: "/locationAll",
       query: { q: searchQuery },
     });
   };

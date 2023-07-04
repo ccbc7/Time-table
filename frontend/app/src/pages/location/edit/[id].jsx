@@ -55,7 +55,7 @@
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        router.push(`/LocationAll`);
+        router.push(`/locationAll`);
       }, 1000);
     };
 

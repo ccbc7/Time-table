@@ -102,7 +102,7 @@ const LocationsShow = () => {
         </table>
       </div>
       <div className="text-center">
-        <Link href="/LocationCreate">
+        <Link href="/locationCreate">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center">
             施設を登録する
           </button>
