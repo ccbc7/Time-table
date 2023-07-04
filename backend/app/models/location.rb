@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  validates :location_name, :location_info, :user_id, presence: true
+  validates :location_name, :user_id, presence: true
   has_one_attached :image
   belongs_to :user, foreign_key: 'user_id', primary_key: 'user_id'
   has_many :reservations
