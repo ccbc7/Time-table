@@ -55,7 +55,7 @@ const LocationAll = () => {
       <div className="flex justify-center flex-wrap">
         {locations.map((location) => (
           <div key={location.id} className="mx-4 my-2">
-            <Link href={`/Location/Confirm/${location.id}`}>
+            <Link href={`/location/confirm/${location.id}`}>
               <img
                 src={location.image_url}
                 alt={location.title}

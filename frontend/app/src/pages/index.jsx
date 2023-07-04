@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Link from "next/link";
-import AllCalendar from "@/pages/AllCalendar";
+import AllCalendar from "@/pages/allCalendar";
 import { auth } from "@/utils/firebase";
 import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";

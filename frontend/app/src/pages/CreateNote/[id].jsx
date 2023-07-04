@@ -36,7 +36,7 @@ function CreateNote() {
 
       if (response.status === 200 || response.status === 201) {
         setSubmitted(true);
-        setTimeout(() => router.push(`/Location/Confirm/${location_id}`), 2000);
+        setTimeout(() => router.push(`/location/confirm/${location_id}`), 2000);
       } else {
         setShowModal(true);
       }
