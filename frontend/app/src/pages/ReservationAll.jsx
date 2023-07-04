@@ -86,7 +86,7 @@ const ReservationAll = () => {
                   {reservation.location?.id}
                 </td>
                 <td className="border  px-4 py-2">
-                  <Link href={`Location/Confirm/${reservation.location?.id}`}>
+                  <Link href={`location/confirm/${reservation.location?.id}`}>
                     <img
                       src={reservation.location?.image_url}
                       alt={reservation.title}
