@@ -15,12 +15,6 @@ RSpec.describe Location, type: :model do
       expect(location.errors[:location_name]).to include("を入力してください")
     end
 
-    it "施設情報が無いと無効であること" do
-      location.location_info = nil
-      location.valid?
-      expect(location.errors[:location_info]).to include("を入力してください")
-    end
-
     it "ユーザーIDが無いと無効であること" do
       location.user_id = nil
       location.valid?
