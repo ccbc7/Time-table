@@ -7,11 +7,20 @@ import Modal from "@/components/Modal";
 
 const LocationCreate = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [validFile, setValidFile] = useState(true);
   const fileSelectedHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (!file.type.startsWith("image/")) {
+      setValidFile(false);
+      return;
+    }
+    setSelectedFile(file);
+    setValidFile(true);
   };
   const [location_name, setTitle] = useState("");
   const [location_info, setLocationInfo] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [titleError, setTitleError] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
@@ -23,23 +32,36 @@ const LocationCreate = () => {
       return;
     }
 
+    if (!location_name) {
+      setTitleError("施設名を入力してください");
+      return;
+    }
+
     const fd = new FormData();
     fd.append("location[location_name]", location_name);
     fd.append("location[user_id]", auth.currentUser.uid);
     fd.append("location[location_info]", location_info);
     if (selectedFile) {
       fd.append("location[image]", selectedFile, selectedFile.name);
+    } else {
+      const response = await fetch("/sample_facility.png");
+      const blob = await response.blob();
+      fd.append("location[image]", blob, "sample_facility.png");
     }
 
-    await axios.post("/locations", fd);
-    setTitle("");
-    setLocationInfo("");
-    setSubmitted(true);
-    setShowModal(true);
-    setTimeout(() => {
-      setShowModal(false);
-      router.push("/locationShow");
-    }, 1000);
+    try {
+      await axios.post("/locations", fd);
+      setTitle("");
+      setLocationInfo("");
+      setSubmitted(true);
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+        router.push("/locationShow");
+      }, 1000);
+    } catch (error) {
+      setErrorMessage(error.response.data.error);
+    }
   };
 
   return (
@@ -51,6 +73,9 @@ const LocationCreate = () => {
       <div className="border-2 min-h-screen bg-gray-100 flex items-start justify-center py-20">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-center text-3xl mb-2">施設登録</h2>
+          {errorMessage && (
+            <p className="text-center text-red-600">{errorMessage}</p>
+          )}
           <form className="mt-8 space-y-6" onSubmit={submitForm}>
             <div className="mb-2">
               <input
@@ -61,6 +86,11 @@ const LocationCreate = () => {
                 placeholder="ファイルをアップロード"
               />
             </div>
+            {!validFile && (
+              <p className="text-center  text-red-600">
+                アップロード可能なのは画像ファイルのみです。
+              </p>
+            )}
             <div className="mb-2">
               <label className="pr-3 text-right w-24 inline-block">
                 施設名:
@@ -72,6 +102,9 @@ const LocationCreate = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+            {titleError && (
+              <p className="text-center text-red-600">{titleError}</p>
+            )}{""}
             <div className="flex items-start mb-2">
               <label className="pr-3 text-right w-24">施設情報:</label>
               <textarea
@@ -85,6 +118,7 @@ const LocationCreate = () => {
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded"
+                disabled={!validFile}
               >
                 送信
               </button>
