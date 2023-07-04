@@ -124,7 +124,7 @@ const ReservationAll = () => {
                   </button>
                 </td>
                 <td className="border  px-4 py-2">
-                  <Link href={`Reservation/edit/${reservation.id}`}>編集</Link>
+                  <Link href={`reservation/edit/${reservation.id}`}>編集</Link>
                 </td>
               </tr>
             ))}
@@ -132,7 +132,7 @@ const ReservationAll = () => {
         </table>
       </div>
       <div className="text-center">
-        <Link href="/LocationAll">
+        <Link href="/locationAll">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center">
             施設を予約する
           </button>

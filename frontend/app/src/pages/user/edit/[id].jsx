@@ -35,8 +35,8 @@ const EditUser = () => {
       fd.append("user[image]", selectedFile, selectedFile.name);
     }
 
-    await axios.put(`/users/${id}`, fd); 
-    router.push("/ProfileEdit");
+    await axios.put(`/users/${id}`, fd);
+    router.push("/profileEdit");
   };
 
   return (

@@ -15,7 +15,7 @@ function Notice() {
     console.log(response.data);
     const sortedNotices = response.data.sort(
       (a, b) => new Date(b.created_at) - new Date(a.created_at)
-    ); 
+    );
     const latestNotices = sortedNotices.slice(0, 5);
     setNotices(latestNotices);
   };
@@ -33,7 +33,7 @@ function Notice() {
         {notices.map((notice, index) => (
           <div key={index}>
             <div className="hover:bg-gray-200">
-            <Link href={`/Reservation/edit/${notice.id}`}>
+            <Link href={`/reservation/edit/${notice.id}`}>
               <p>{notice.message1}</p>
               <p className="border-b-2 pb-2">{notice.message2}</p>
             </Link>

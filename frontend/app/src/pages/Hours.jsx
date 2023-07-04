@@ -26,7 +26,7 @@ const HourForm = ({ hour, onUpdate, onSave }) => {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        router.push(`/Hours`);
+        router.push(`/hours`);
       }, 1000);
     } catch (error) {
       console.log(error);

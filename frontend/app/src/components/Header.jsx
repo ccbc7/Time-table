@@ -17,9 +17,9 @@ const navigation = [
     href: "#",
     current: false,
     subMenu: [
-      { name: "施設一覧", href: "/LocationAll" },
-      { name: "施設登録", href: "/LocationCreate" },
-      { name: "登録した施設", href: "/LocationShow" },
+      { name: "施設一覧", href: "/locationAll" },
+      { name: "施設登録", href: "/locationCreate" },
+      { name: "登録した施設", href: "/locationShow" },
       { name: "コメントした施設", href: "/userNotes" },
     ],
   },
@@ -28,20 +28,20 @@ const navigation = [
     href: "#",
     current: false,
     subMenu: [
-      { name: "予約作成", href: "/LocationAll" },
-      { name: "予約確認", href: "/ReservationAll" },
+      { name: "予約作成", href: "/locationAll" },
+      { name: "予約確認", href: "/reservationAll" },
     ],
   },
 ];
 
 const userNavigation = [
-  { name: "プロフィール", href: "/ProfileEdit" },
+  { name: "プロフィール", href: "/profileEdit" },
   { name: "サインアウト", href: "#" },
 ];
 
 const guestNavigation = [
-  { name: "新規登録", href: "/SignUp" },
-  { name: "サインイン", href: "/SignIn" },
+  { name: "新規登録", href: "/signUp" },
+  { name: "サインイン", href: "/signIn" },
 ];
 
 function classNames(...classes) {

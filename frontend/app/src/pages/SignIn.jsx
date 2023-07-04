@@ -108,7 +108,7 @@ function SignIn() {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        router.push("/ProfileEdit");
+        router.push("/profileEdit");
       }, 1000);
     } catch (e) {
       const errorMessage = await getFirebaseErrorMessage(

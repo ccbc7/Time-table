@@ -92,7 +92,7 @@ const LocationConfirm = () => {
                     </td>
                   </tr>
                 </table>
-                <Link href={`/CreateNote/${location.id}`}>
+                <Link href={`/createNote/${location.id}`}>
                   <button
                     className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md w-full mt-4"
                   >

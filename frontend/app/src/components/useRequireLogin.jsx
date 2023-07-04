@@ -9,7 +9,7 @@ export const useRequireLogin = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
       } else {
-        router.push("/SignIn");
+        router.push("/signIn");
       }
     });
 
