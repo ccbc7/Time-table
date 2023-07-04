@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const LocationsShow = () => {
   const [locations, setLocations] = useState([]);
@@ -31,7 +32,8 @@ const LocationsShow = () => {
   return (
     <>
       <Header />
-      <h1 className="text-3xl text-center font-bold">登録した施設</h1>
+      <h1 className="text-3xl text-center font-bold mt-3">登録した施設</h1>
+      <p className="text-center border-b my-3">あなたが登録した施設を確認できます。</p>
       <div className="my-4 flex justify-center">
         <table className="">
           <thead>
@@ -108,6 +110,7 @@ const LocationsShow = () => {
           </button>
         </Link>
       </div>
+      <Footer />
     </>
   );
 };
