@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const HourForm = ({ hour, onUpdate, onSave }) => {
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +26,7 @@ const HourForm = ({ hour, onUpdate, onSave }) => {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        router.push(`/`);
+        router.push(`/Hours`);
       }, 1000);
     } catch (error) {
       console.log(error);
@@ -128,6 +129,14 @@ const HoursPage = () => {
                 setShowModal={setShowModal}
               />
             ))}
+          </div>
+          <div className="flex justify-center items-center ">
+            <Link
+              href="/"
+              className="px-4 py-2 cursor-pointer text-black hover:text-blue-500"
+            >
+              Topに戻る
+            </Link>
           </div>
         </div>
       </div>
