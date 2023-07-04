@@ -20,7 +20,7 @@ const navigation = [
       { name: "施設一覧", href: "/LocationAll" },
       { name: "施設登録", href: "/LocationCreate" },
       { name: "登録した施設", href: "/LocationShow" },
-      { name: "コメントした施設", href: "/UserNotes" },
+      { name: "コメントした施設", href: "/userNotes" },
     ],
   },
   {
