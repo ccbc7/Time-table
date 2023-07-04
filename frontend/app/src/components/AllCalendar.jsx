@@ -12,7 +12,7 @@ function toDateString(date) {
   )}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-const ReservationCreate = () => {
+const AllCalendar = () => {
   const today = new Date();
   const todayString = toDateString(today);
   const [reservationsMap, setReservationsMap] = useState({});
@@ -191,4 +191,4 @@ const ReservationCreate = () => {
   );
 };
 
-export default ReservationCreate;
+export default AllCalendar;

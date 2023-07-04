@@ -94,7 +94,7 @@ const LocationsShow = () => {
                   </button>
                 </td>
                 <td className="border  px-4 py-2">
-                  <Link href={`Location/edit/${location.id}`}>編集</Link>
+                  <Link href={`location/edit/${location.id}`}>編集</Link>
                 </td>
               </tr>
             ))}
