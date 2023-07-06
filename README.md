@@ -1,4 +1,4 @@
-# Time table
+![画面収録_2023-07-05_22_46_22_AdobeExpress](https://github.com/ccbc7/Time-table/assets/98397072/5225b0fc-0282-4fbf-9e77-12536794b971)# Time table
 
 # 作品
 **github**
@@ -74,10 +74,10 @@ https://prod.time-table01.com
 
 **予約登録**
 <br>
-登録した施設をもとに、施設を予約することができますカレンダーを使用し、他の利用者との兼ね合いをみます。
+登録した施設をもとに、施設を予約することができます。カレンダーを使用し、他の利用者との兼ね合いをみます。
 <br>
-![画面収録_2023-07-05_22_46_22_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/102470e0-8550-2997-1652-07d5a6f075c3.gif)
-![画面収録_2023-07-05_22_46_22_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/102470e0-8550-2997-1652-07d5a6f075c3.gif)
+![画面収録_2023-07-05_22_46_22_AdobeExpress](https://github.com/ccbc7/Time-table/assets/98397072/3c840ce9-fbc6-493e-a5a5-61aa8972bcdd)
+
 
 **施設検索**
 <br>
