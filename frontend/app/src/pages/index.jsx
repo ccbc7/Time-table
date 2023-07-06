@@ -29,7 +29,7 @@ function Index() {
       <main>
         {!user ? (
           <div className="flex justify-center items-center">
-            <Link href="SignIn">
+            <Link href="signIn">
               <button className="my-5 text-white bg-cyan-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 text-center py-4 px-16 rounded  text-lg">
                 使ってみる
               </button>
