@@ -64,18 +64,22 @@ https://prod.time-table01.com
 
 **ログインページ**
 ・firebaseを使用したログイン機能です。ゲストログイン,メールアドレスログイン、グーグルログインを実装。ログイン後、rails側にユーザー情報を送信します。
+<br>
 ![画面収録_2023-07-05_22_22_42_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/25975a81-7903-0fb4-5f58-b35f8bdcdbaa.gif)
 
 **施設登録**
 施設を登録することができます。
+<br>
 ![画面収録_2023-07-05_22_35_34_AdobeExpress (1).gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/c4667a4e-2199-416d-4c96-f2f1d0e34014.gif)
 
 **予約登録**
 登録した施設をもとに、施設を予約することができますカレンダーを使用し、他の利用者との兼ね合いをみます。
+<br>
 ![画面収録_2023-07-05_22_46_22_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/102470e0-8550-2997-1652-07d5a6f075c3.gif)
 
 **施設検索**
 施設が増えてきた場合、検索機能が役立ちます！
+<br>
 ![画面収録_2023-07-05_22_57_18_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/b8f7078b-0b83-0bb9-4cb4-bddaff46f420.gif)
 
 # 機能一覧
