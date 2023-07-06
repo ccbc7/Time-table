@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Hours", type: :request do
+  before do
+    Hour.delete_all
+  end
+
   let!(:hour) { create(:hour) }
   let(:valid_attributes) { { period: '9:00-10:00' } }
   let(:invalid_attributes) { { period: '' } }
