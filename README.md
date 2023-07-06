@@ -20,6 +20,7 @@ https://prod.time-table01.com
 | Tailwind UI | UIコンポーネント| 
 
 <br>
+
 **バックエンド**
 <br>
 
@@ -31,6 +32,7 @@ https://prod.time-table01.com
 | Rubocop | コードスタイルの一貫性を維持してくれます。| 
 
 <br>
+
 **インフラ**
 <br>
 
@@ -49,10 +51,13 @@ https://prod.time-table01.com
 |github actions|github上でスムーズにCICDフローを構築し、ECSへアップロードするまでの手順を非常に簡単にすることができます。|
 
 <br>
+
 **全体設計**
 <br>
+
 ![名称未設定.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/89523988-8dd7-8a00-86b9-8893eb689d00.png)
 <br>
+
 ![名称未設定 (2).jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/316f9395-4598-73bc-7944-2e4178d4072e.jpeg)
 <br>
 #### 機能紹介
