@@ -1,17 +1,12 @@
 
 # 作品
-**github**
-
-https://github.com/ccbc7/Time-table
-
 **サイトURL**
-
 https://prod.time-table01.com/
-
+<br>
 # アプリについて #
 https://prod.time-table01.com
 施設の中で、いつ、誰がどの施設を使っているのかがわかります。また、自分が使用したい施設を予約し、カレンダーに合わせて自身の予定を確認することができます。
-
+<br>
 # 技術
 **フロントエンド**
 <br>
@@ -30,7 +25,7 @@ https://prod.time-table01.com
 | MySQL | データベース| 
 | Rspec | リクエストスペック・モデルスペックのテストを実行します。| 
 | Rubocop | コードスタイルの一貫性を維持してくれます。| 
-
+<br>
 **インフラ**
 <br>
 | 使用技術 | 詳細 |
@@ -46,7 +41,7 @@ https://prod.time-table01.com
 |Docker|バージョン管理やビルド手順の定義が非常に開発に助かります。|
 |docker-compose|フロントエンドとバックエンド両方のコンテナを扱う上で重宝しました。|
 |github actions|github上でスムーズにCICDフローを構築し、ECSへアップロードするまでの手順を非常に簡単にすることができます。|
-
+<br>
 **全体設計**
 <br>
 ![名称未設定.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/89523988-8dd7-8a00-86b9-8893eb689d00.png)
@@ -65,13 +60,13 @@ https://prod.time-table01.com
 ・firebaseを使用したログイン機能です。ゲストログイン,メールアドレスログイン、グーグルログインを実装。ログイン後、rails側にユーザー情報を送信します。
 <br>
 ![画面収録_2023-07-05_22_22_42_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/25975a81-7903-0fb4-5f58-b35f8bdcdbaa.gif)
-
+<br>
 **施設登録**
 <br>
 施設を登録することができます。
 <br>
 ![画面収録_2023-07-05_22_35_34_AdobeExpress (1).gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/c4667a4e-2199-416d-4c96-f2f1d0e34014.gif)
-
+<br>
 **予約登録**
 <br>
 登録した施設をもとに、施設を予約することができます。カレンダーを使用し、他の利用者との兼ね合いをみます。
@@ -83,7 +78,7 @@ https://prod.time-table01.com
 施設が増えてきた場合、検索機能が役立ちます！
 <br>
 ![画面収録_2023-07-05_22_57_18_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/b8f7078b-0b83-0bb9-4cb4-bddaff46f420.gif)
-
+<br>
 # 機能一覧
 | 機能名 | 説明 |
 |-----|-----|
@@ -96,7 +91,7 @@ https://prod.time-table01.com
 | 通知機能 |ベルアイコンを押すと最近の予約5件を確認できます。| 
 |コメント機能|施設ごとに施設に対してのコメントを登録できます。|
 |時間設定機能|時間割に使うワードの登録と変更ができます。|
-
+<br>
 #### 開発にあたって
 学校に勤めていたときの経験をもとに、以下のような背景がありました。
 <br>
@@ -104,3 +99,6 @@ https://prod.time-table01.com
 <br>
 ・学校現場では職員室内の黒板に、その日の施設の使用申請が書かれていました。しかし、施設内で自分が確認したいときに毎回職員室へ行き、予定を確認しなければいけないという状態でした。教員は基本的に時間がないので、すぐに予定を確認でき、施設使用を申請できたらいいなと感じていました。
 そこで、本アプリの作成を決めました。
+#### 今後の課題
+JWT（JSON Web Tokens）認証の実装はしていないので、実際のサービスでは必要です。また、団体登録や、メールでの通知が課題です。
+
