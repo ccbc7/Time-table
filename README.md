@@ -11,6 +11,7 @@ https://prod.time-table01.com
 # 技術
 **フロントエンド**
 <br>
+
 | 使用技術 | 詳細 |
 |-----|-----|
 | Next.js (13.4.3)| フロントエンドフレームワーク |
@@ -18,6 +19,7 @@ https://prod.time-table01.com
 | Tailwind CSS | CSSフレームワーク| 
 | Tailwind UI | UIコンポーネント| 
 
+<br>
 **バックエンド**
 <br>
 | 使用技術 | 詳細 |
