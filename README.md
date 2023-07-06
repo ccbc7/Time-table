@@ -1,7 +1,5 @@
-![画面収録_2023-07-05_22_46_22_AdobeExpress](https://github.com/ccbc7/Time-table/assets/98397072/5225b0fc-0282-4fbf-9e77-12536794b971)# Time table
 
 # 作品
-___
 **github**
 
 https://github.com/ccbc7/Time-table
@@ -52,8 +50,9 @@ https://prod.time-table01.com
 **全体設計**
 <br>
 ![名称未設定.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/89523988-8dd7-8a00-86b9-8893eb689d00.png)
+<br>
 ![名称未設定 (2).jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/316f9395-4598-73bc-7944-2e4178d4072e.jpeg)
-
+<br>
 #### 機能紹介
 **Topページ**
 <br>
@@ -78,8 +77,7 @@ https://prod.time-table01.com
 登録した施設をもとに、施設を予約することができます。カレンダーを使用し、他の利用者との兼ね合いをみます。
 <br>
 ![画面収録_2023-07-05_22_46_22_AdobeExpress](https://github.com/ccbc7/Time-table/assets/98397072/3c840ce9-fbc6-493e-a5a5-61aa8972bcdd)
-
-
+<br>
 **施設検索**
 <br>
 施設が増えてきた場合、検索機能が役立ちます！
