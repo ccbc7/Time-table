@@ -53,13 +53,11 @@ https://prod.time-table01.com
 **Topページ**
 <br>
 ・カレンダーで本日予約している内容がすぐにわかります。
-<br>
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/de6f47d9-6292-d265-4251-03cde4efe0d6.png)
 
 **ログインページ**
 <br>
 ・firebaseを使用したログイン機能です。ゲストログイン,メールアドレスログイン、グーグルログインを実装。ログイン後、rails側にユーザー情報を送信します。
-<br>
 ![画面収録_2023-07-05_22_22_42_AdobeExpress.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/25975a81-7903-0fb4-5f58-b35f8bdcdbaa.gif)
 <br>
 **施設登録**
