@@ -64,7 +64,9 @@ https://prod.time-table01.com
 **Topページ**
 <br>
 ・カレンダーで本日予約している内容がすぐにわかります。
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3304584/de6f47d9-6292-d265-4251-03cde4efe0d6.png)
+
+![image](https://github.com/ccbc7/Time-table/assets/98397072/e0461dd8-86ba-4ae4-8b20-9bc7a3586122)
+
 
 **ログインページ**
 ・firebaseを使用したログイン機能です。ゲストログイン,メールアドレスログイン、グーグルログインを実装。ログイン後、rails側にユーザー情報を送信します。
