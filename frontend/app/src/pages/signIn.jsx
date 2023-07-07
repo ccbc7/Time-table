@@ -177,7 +177,7 @@ function SignIn() {
               </button>
               <p>
                 初めてご利用ですか？新規登録は
-                <Link href="/SignUp" className="text-blue-700 cursor-pointer">
+                <Link href="/signUp" className="text-blue-700 cursor-pointer">
                   こちら
                 </Link>
               </p>
