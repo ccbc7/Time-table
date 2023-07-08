@@ -8,6 +8,7 @@ import useRequireLogin from "@/components/useRequireLogin";
 import Link from "next/link";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 const CreateNote = () => {
   useRequireLogin();
@@ -97,6 +98,9 @@ const CreateNote = () => {
 
   return (
     <>
+      <Head>
+        <title>プロフィール編集</title>
+      </Head>
       <Header />
       {submitted && (
         <Modal open={showModal} onClose={() => setShowModal(false)} />

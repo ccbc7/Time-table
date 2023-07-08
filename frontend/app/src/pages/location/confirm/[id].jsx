@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Link from "next/link";
 import Calendar from "@/components/Calendar";
 import CommentView from "@/components/CommentView";
-import Like from "@/components/Like";
 
 const LocationConfirm = () => {
   const router = useRouter();
@@ -109,7 +108,6 @@ const LocationConfirm = () => {
               </button>
             </Link>
             <CommentView location_id={id} />
-            <Like location_id={id} />
             <div className="p-1 "></div>
           </div>
         </div>

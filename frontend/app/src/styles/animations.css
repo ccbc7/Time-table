@@ -1,0 +1,21 @@
+/* src/animations.css */
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.animate {
+  animation: slide-up 0.8s forwards;
+}
