@@ -40,9 +40,12 @@ const LocationConfirm = () => {
 
   return (
     <>
+      <Head>
+        <title>施設詳細</title>
+      </Head>
       <Header />
       {location && (
-        <div className="border-2 min-h-screen bg-gray-100 flex items-start justify-center pt-8">
+        <div className="border-2 min-h-screen bg-gray-50 flex items-start justify-center pt-8">
           <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-3xl">
             <h2 className="text-center text-3xl mb-2">施設詳細</h2>
             <p className="mb-3">◆現在、以下の予約が入っています。</p>
@@ -93,9 +96,7 @@ const LocationConfirm = () => {
                   </tr>
                 </table>
                 <Link href={`/createNote/${location.id}`}>
-                  <button
-                    className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md w-full mt-4"
-                  >
+                  <button className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md w-full mt-4">
                     この施設にコメントする
                   </button>
                 </Link>
@@ -107,11 +108,7 @@ const LocationConfirm = () => {
               </button>
             </Link>
             <CommentView location_id={id} />
-            <div className="p-1 ">
-              <Head>
-                <title>時間割</title>
-              </Head>
-            </div>
+            <div className="p-1 "></div>
           </div>
         </div>
       )}

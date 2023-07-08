@@ -19,9 +19,3 @@ test:
 
 production:
   <<: *default
-
-
-
-
-  # username: <%= ENV["MYSQL_USERNAME"] || "myuser" %>
-  # password: <%= ENV["MYSQL_PASSWORD"] || "mypassword" %>

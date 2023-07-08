@@ -84,7 +84,7 @@ const AllCalendar = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 flex items-start justify-center py-3">
+      <div className="min-h-screen bg-gradient-to-b from-blue-100 to-green-100 flex items-start justify-center py-3">
         <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-5xl">
           <h2 className="text-center text-3xl mb-2">本日の予定</h2>
           <div className="flex justify-center mb-5">

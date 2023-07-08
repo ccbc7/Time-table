@@ -5,6 +5,7 @@ import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
 import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 const LocationAll = () => {
   const router = useRouter();
@@ -32,6 +33,9 @@ const LocationAll = () => {
 
   return (
     <>
+      <Head>
+        <title>施設一覧</title>
+      </Head>
       <Header />
       <h1 className="text-3xl text-center font-bold mt-3">施設一覧</h1>
       <p className="text-center my-3">◆予約する施設を選んでください</p>
@@ -47,7 +51,10 @@ const LocationAll = () => {
       <div className="flex justify-center flex-wrap">
         {locations.map((location) => (
           <div key={location.id} className="mx-4 my-2">
-            <Link href="/location/confirm/[id]" as={`/location/confirm/${location.id}`}>
+            <Link
+              href="/location/confirm/[id]"
+              as={`/location/confirm/${location.id}`}
+            >
               <img
                 src={location.image_url}
                 alt={location.title}

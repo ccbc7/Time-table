@@ -3,7 +3,8 @@ import Link from "next/link";
 function SubMenu() {
   return (
     <>
-      <div className="bg-gray-100 flex justify-center items-center py-3">
+      <div className="border"></div>
+      <div className="bg-blue-100 flex justify-center items-center py-3">
         <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-5xl">
           <div className="flex justify-evenly">
             <Link href="/locationCreate">

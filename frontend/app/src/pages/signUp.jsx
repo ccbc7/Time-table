@@ -67,12 +67,12 @@ function SignUp() {
         description="アカウントの作成が成功しました"
       />
       )}
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-150 flex items-center justify-center">
         {user ? (
           <>
           </>
         ) : (
-          <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+          <div className="min-h-screen bg-gray-150 flex items-center justify-center">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
               <h2 className="text-3xl font-bold text-center mb-8">
                 アカウントを作成

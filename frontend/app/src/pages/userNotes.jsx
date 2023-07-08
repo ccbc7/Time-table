@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
+import Head from "next/head";
 
 const UserNotes = () => {
   const [notes, setNotes] = useState([]);
@@ -31,14 +32,18 @@ const UserNotes = () => {
 
   return (
     <>
+      <Head>
+        <title>コメントした施設</title>
+      </Head>
       <Header />
       <h1 className="text-3xl text-center font-bold">施設へのコメント一覧</h1>
-      <p className="text-center border-b my-3">あなたが登録した施設へのコメントを確認できます。</p>
+      <p className="text-center border-b my-3">
+        あなたが登録した施設へのコメントを確認できます。
+      </p>
       <div className="my-4 flex justify-center">
         <table className="">
           <thead>
             <tr>
-
               <th className="border px-4 py-2 bg-emerald-200">施設名</th>
               <th className="border px-4 py-2 bg-emerald-200">タイトル</th>
               <th className="border px-4 py-2 bg-emerald-200">コンテンツ</th>
@@ -49,7 +54,9 @@ const UserNotes = () => {
           <tbody className="text-center">
             {notes.map((note) => (
               <tr key={note.id}>
-                <td className="border  px-4 py-2">{note.location?.location_name}</td>
+                <td className="border  px-4 py-2">
+                  {note.location?.location_name}
+                </td>
                 <td className="border  px-4 py-2">{note.title}</td>
                 <td className="border  px-4 py-2">{note.content}</td>
                 <td className="border  px-4 py-2">
