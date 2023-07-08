@@ -91,7 +91,7 @@ const LocationsShow = () => {
       </div>
       <div className="text-center">
         <Link href="/locationCreate">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center mb-32">
             施設を登録する
           </button>
         </Link>
