@@ -142,7 +142,7 @@ function SignIn() {
           description={modalDescription}
         />
       )}
-      <div className="bg-gray-50 flex items-center justify-center pt-10">
+      <div className="bg-white flex items-center justify-center pt-10">
         {user ? (
           <></>
         ) : (
