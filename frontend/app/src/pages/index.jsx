@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
 import SubMenu from "@/components/SubMenu";
 import HeaderWithSlider from "@/components/HeaderWithSlider";
+import Head from "next/head";
+
 
 function Index() {
   const [user, setUser] = useState(null);
@@ -22,6 +24,9 @@ function Index() {
 
   return (
     <>
+      <Head>
+        <title>Time table</title>
+      </Head>
       <div>
         <Header />
         <HeaderWithSlider />

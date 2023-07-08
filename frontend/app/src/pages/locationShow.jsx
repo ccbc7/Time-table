@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 const LocationsShow = () => {
   const [locations, setLocations] = useState([]);
@@ -31,37 +32,26 @@ const LocationsShow = () => {
 
   return (
     <>
+      <Head>
+        <title>登録した施設</title>
+      </Head>
       <Header />
       <h1 className="text-3xl text-center font-bold mt-3">登録した施設</h1>
-      <p className="text-center border-b my-3">あなたが登録した施設を確認できます。</p>
+      <p className="text-center border-b my-3">
+        あなたが登録した施設を確認できます。
+      </p>
       <div className="my-4 flex justify-center">
         <table className="">
           <thead>
             <tr>
-              <th className="border px-4 py-2 bg-violet-200">
-                ID
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                イメージ
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                施設名
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                登録ユーザー
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                作成日時
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                予約する
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                削除する
-              </th>
-              <th className="border px-4 py-2 bg-violet-200">
-                編集する
-              </th>
+              <th className="border px-4 py-2 bg-violet-200">ID</th>
+              <th className="border px-4 py-2 bg-violet-200">イメージ</th>
+              <th className="border px-4 py-2 bg-violet-200">施設名</th>
+              <th className="border px-4 py-2 bg-violet-200">登録ユーザー</th>
+              <th className="border px-4 py-2 bg-violet-200">作成日時</th>
+              <th className="border px-4 py-2 bg-violet-200">予約する</th>
+              <th className="border px-4 py-2 bg-violet-200">削除する</th>
+              <th className="border px-4 py-2 bg-violet-200">編集する</th>
             </tr>
           </thead>
           <tbody className="text-center">
@@ -75,12 +65,8 @@ const LocationsShow = () => {
                     className="h-10"
                   />
                 </td>
-                <td className="border  px-4 py-2">
-                  {location.location_name}
-                </td>
-                <td className="border  px-4 py-2">
-                  {location.username}
-                </td>
+                <td className="border  px-4 py-2">{location.location_name}</td>
+                <td className="border  px-4 py-2">{location.username}</td>
                 <td className="border  px-4 py-2">
                   {new Intl.DateTimeFormat("ja-JP", {
                     dateStyle: "short",

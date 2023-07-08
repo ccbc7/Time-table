@@ -172,7 +172,7 @@ const ReservationCreate = () => {
       {submitted && (
         <Modal open={showModal} onClose={() => setShowModal(false)} />
       )}
-      <div className="border-2 min-h-screen bg-gray-100 flex items-start justify-center py-3">
+      <div className="border-2 min-h-screen bg-gray-50 flex items-start justify-center py-3">
         <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-3xl">
           <h2 className="text-center text-3xl mb-2">
             予約作成: {location.location_name}

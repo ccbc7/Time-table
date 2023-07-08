@@ -65,7 +65,7 @@
         {showModal && (
           <Modal open={showModal} onClose={() => setShowModal(false)} />
         )}
-        <div className="border-2 min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="border-2 min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md -mt-32">
             <h2 className="text-center text-3xl mb-2">施設情報編集</h2>
             <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>

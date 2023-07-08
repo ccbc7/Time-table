@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import Header from "@/components/Header";
+import Head from "next/head";
+import Footer from "@/components/Footer";
 
 const ReservationAll = () => {
   const [reservations, setReservations] = useState([]);
@@ -31,6 +33,9 @@ const ReservationAll = () => {
 
   return (
     <>
+      <Head>
+        <title>予約確認</title>
+      </Head>
       <Header />
       <h1 className="text-3xl text-center font-bold">予約確認</h1>
       <p className="text-center border-b my-3">◆あなたの予約した内容が確認できます。</p>
@@ -138,6 +143,7 @@ const ReservationAll = () => {
           </button>
         </Link>
       </div>
+      <Footer />
     </>
   );
 };

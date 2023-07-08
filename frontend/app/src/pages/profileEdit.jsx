@@ -101,7 +101,7 @@ const CreateNote = () => {
       {submitted && (
         <Modal open={showModal} onClose={() => setShowModal(false)} />
       )}
-      <div className="bg-gray-100 flex items-center justify-center pt-10">
+      <div className="bg-gray-50 flex items-center justify-center pt-10">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
           <h3 className="text-center text-3xl mb-2">プロフィール</h3>
           <form onSubmit={handleSubmit(submitForm)}>

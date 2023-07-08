@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import { auth } from "../utils/firebase";
 import Modal from "@/components/Modal";
+import Head from "next/head";
 
 const LocationCreate = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -66,11 +67,14 @@ const LocationCreate = () => {
 
   return (
     <>
+      <Head>
+        <title>施設登録</title>
+      </Head>
       <Header />
       {submitted && (
         <Modal open={showModal} onClose={() => setShowModal(false)} />
       )}
-      <div className="border-2 min-h-screen bg-gray-100 flex items-start justify-center py-20">
+      <div className="border-2 min-h-screen bg-gray-50 flex items-start justify-center py-20">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-center text-3xl mb-2">施設登録</h2>
           {errorMessage && (
@@ -104,7 +108,8 @@ const LocationCreate = () => {
             </div>
             {titleError && (
               <p className="text-center text-red-600">{titleError}</p>
-            )}{""}
+            )}
+            {""}
             <div className="flex items-start mb-2">
               <label className="pr-3 text-right w-24">施設情報:</label>
               <textarea
