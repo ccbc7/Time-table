@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 
 const HourForm = ({ hour, onUpdate, onSave }) => {
   const [showModal, setShowModal] = useState(false);
@@ -110,6 +111,9 @@ const HoursPage = () => {
 
   return (
     <>
+    <Head>
+      <title>時間設定変更</title>
+    </Head>
       <Header />
       <div className="bg-gray-100 flex justify-center items-center py-3 min-h-screen">
         <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-xl">

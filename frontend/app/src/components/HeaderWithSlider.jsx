@@ -13,7 +13,7 @@ function SlideshowComponent() {
             ? "/HeaderPanel2.png"
             : "/headerPanel.png"
         );
-        setIsVisible(true); 
+        setIsVisible(true);
       }, 2000);
     }, 9000);
     return () => {
@@ -23,7 +23,7 @@ function SlideshowComponent() {
 
   return (
     <div>
-      <div className="flex justify-center items-center bg-emerald-400 lg:px-0">
+      <div className="flex justify-center items-center lg:px-0 bg-gradient-to-t from-green-300 to-white-500">
         <img
           className={`object-contain max-h-64 mx-auto h-full w-full lg:max-h-64 lg:mx-0 ${
             isVisible ? "animate-fade-in" : "animate-fade-out"
