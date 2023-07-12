@@ -28,7 +28,7 @@ const navigation = [
     href: "#",
     current: false,
     subMenu: [
-      { name: "予約作成", href: "/locationAll" },
+      { name: "予約作成", href: "/reservationSearch" },
       { name: "予約確認", href: "/reservationAll" },
     ],
   },
