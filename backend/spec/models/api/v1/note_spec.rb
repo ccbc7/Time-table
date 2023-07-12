@@ -28,7 +28,7 @@ RSpec.describe Note, type: :model do
       expect(note.errors[:user_id]).to include("を入力してください")
     end
 
-    it "location_idが無いと向こうであること" do
+    it "location_idが無いと無効であること" do
       note.location_id = nil
       expect(note).not_to be_valid
       expect(note.errors[:location_id]).to include("を入力してください")
