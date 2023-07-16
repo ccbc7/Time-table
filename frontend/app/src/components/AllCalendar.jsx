@@ -100,6 +100,7 @@ const AllCalendar = () => {
             />
           </div>
           <div className="flex justify-center">
+            <div className="overflow-x-auto">
             <table className="table-fixed bg-white rounded-md">
               <thead>
                 <tr className="bg-lime-50 border">
@@ -163,6 +164,7 @@ const AllCalendar = () => {
                   ))}
               </tbody>
             </table>
+            </div>
           </div>
           <div className="flex justify-center items-center my-3">
             <div className=" bg-green-200 border h-6 w-10"></div>
@@ -171,16 +173,16 @@ const AllCalendar = () => {
           <div className="flex justify-center mb-5 mt-3 border-b pb-3">
             <button
               onClick={() => setDayOffset(dayOffset - 1)}
-              className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md mx-4"
+              className="px-3 sm:px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md mx-4"
             >
               前の日
             </button>
-            <h3 className="text-2xl">{`${day.getFullYear()}年${
+            <h3 className="sm:text-2xl text-lg">{`${day.getFullYear()}年${
               day.getMonth() + 1
             }月${day.getDate()}日`}</h3>
             <button
               onClick={() => setDayOffset(dayOffset + 1)}
-              className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md mx-4"
+              className="px-3 sm:px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md mx-4"
             >
               次の日
             </button>

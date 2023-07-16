@@ -50,11 +50,11 @@ const LocationConfirm = () => {
             <h2 className="text-center text-3xl mb-2">施設詳細</h2>
             <p className="mb-3">◆現在、以下の予約が入っています。</p>
             <Calendar />
-            <div className="flex space-x-2">
+            <div className="space-x-2 sm:flex mr-4 sm:mr-0">
               <img
                 src={location.image_url}
                 alt={location.location_name}
-                className="mx-auto w-1/2 max-w-xl h-auto rounded-md shadow-md"
+                className="mx-auto sm:w-1/2 max-w-xl h-auto rounded-md shadow-md object-cover w-60 mb-3"
               />
               <div className="w-full">
                 <table className="border-collapse border border-gray-300 w-full h-20">
@@ -80,7 +80,7 @@ const LocationConfirm = () => {
                   </tbody>
                   <tr>
                     <th
-                      className="border border-gray-300 px-4 py-2 bg-violet-200 "
+                      className="border border-gray-300 px-4 py-2 bg-violet-200"
                       colspan="2"
                     >
                       施設情報
@@ -88,7 +88,7 @@ const LocationConfirm = () => {
                   </tr>
                   <tr>
                     <td
-                      className="border border-gray-300 px-4 py-2 text-center"
+                      className="border border-gray-300 px-4 py-2 text-center break-all"
                       colspan="2"
                     >
                       {location.location_info}
@@ -96,7 +96,7 @@ const LocationConfirm = () => {
                   </tr>
                 </table>
                 <Link href={`/createNote/${location.id}`}>
-                  <button className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md w-full mt-4">
+                  <button className="px-6 py-2 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-300 transition duration-200 ease-in-out shadow-md mt-4 w-full">
                     この施設にコメントする
                   </button>
                 </Link>

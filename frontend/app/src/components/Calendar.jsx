@@ -25,7 +25,7 @@ function ReservationCreate() {
     watch,
     formState: { errors },
   } = useForm();
-  const selectedDate = watch("date"); 
+  const selectedDate = watch("date");
   const selectedPeriod = watch("period");
   const [hours, setHours] = useState([]);
 
@@ -92,6 +92,7 @@ function ReservationCreate() {
 
   return (
     <>
+    <div className="overflow-x-auto">
       <table className="table-fixed bg-white rounded-md overflow-hidden w-full">
         <thead>
           <tr className="bg-lime-50 border">
@@ -105,55 +106,56 @@ function ReservationCreate() {
           </tr>
         </thead>
         <tbody className="border">
-            {hours
-              .filter((hour) => hour.period)
-              .map((hour, index) => (
-            <tr key={index}>
-              <td className="p-2 border w-20">{hour.period}</td>
-              {days.map((day, dayIndex) => {
-                const date = toDateString(day.date);
-                const key = `${date}-${hour.period}`;
-                const reservation = reservationsMap[key];
-                const reservationExists = reservation !== undefined;
-                return (
-                  <td
-                    key={index}
-                    className={`p-2 border ${
-                      toDateString(day.date) === todayString
-                        ? "bg-cyan-50"
-                        : reservationExists
-                        ? "bg-red-50"
-                        : toDateString(day.date) === selectedDate &&
-                          hour === selectedPeriod
-                        ? "bg-green-50"
-                        : ""
-                    }`}
-                  >
-                    {reservationExists ? reservation.facility_user_name : "---"}
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
+          {hours
+            .filter((hour) => hour.period)
+            .map((hour, index) => (
+              <tr key={index}>
+                <td className="p-2 border w-20">{hour.period}</td>
+                {days.map((day, dayIndex) => {
+                  const date = toDateString(day.date);
+                  const key = `${date}-${hour.period}`;
+                  const reservation = reservationsMap[key];
+                  const reservationExists = reservation !== undefined;
+                  return (
+                    <td
+                      key={index}
+                      className={`p-2 border ${
+                        toDateString(day.date) === todayString
+                          ? "bg-cyan-50"
+                          : reservationExists
+                          ? "bg-red-50"
+                          : toDateString(day.date) === selectedDate &&
+                            hour === selectedPeriod
+                          ? "bg-green-50"
+                          : ""
+                      }`}
+                    >
+                      {reservationExists ? reservation.facility_user_name : "---"}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
         </tbody>
       </table>
-      <div className="flex justify-center mb-5 mt-3 border-b pb-3">
-        <button
-          onClick={() => setWeekOffset(weekOffset - 1)}
-          className="mr-8 px-5 py-2 bg-blue-500 text-white rounded-md"
-        >
-          前の週
-        </button>
-        <h3 className="text-xl">{`${today.getFullYear()}年${
-          today.getMonth() + 1
-        }月${today.getDate()}日`}</h3>
-        <button
-          onClick={() => setWeekOffset(weekOffset + 1)}
-          className="ml-8 px-5 py-2 bg-blue-500 text-white rounded-md"
-        >
-          次の週
-        </button>
-      </div>
+    </div>
+    <div className="flex justify-center mb-5 mt-3 border-b pb-3">
+      <button
+        onClick={() => setWeekOffset(weekOffset - 1)}
+        className="mr-8 px-2 sm:px-5 py-2 bg-blue-500 text-white rounded-md"
+      >
+        前の週
+      </button>
+      <h3 className="text-xl">{`${today.getFullYear()}年${
+        today.getMonth() + 1
+      }月${today.getDate()}日`}</h3>
+      <button
+        onClick={() => setWeekOffset(weekOffset + 1)}
+        className="ml-8 px-2 sm:px-5 py-2 bg-blue-500 text-white rounded-md"
+      >
+        次の週
+      </button>
+    </div>
     </>
   );
 }
