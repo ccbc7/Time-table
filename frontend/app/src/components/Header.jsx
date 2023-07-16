@@ -283,61 +283,71 @@ export default function Example() {
               </div>
               <Disclosure.Panel className="md:hidden">
                 <div className="px-2 pt-2 pb-2 space-y-1 sm:px-3">
-                  {navigation.map((item, itemIdx) =>
-                    item.subMenu.length ? (
-                      <Menu
-                        as="div"
-                        key={itemIdx}
-                        className="relative text-left"
-                      >
-                        <div>
-                          <Menu.Button className="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-300 hover:text-gray-900">
-                            {item.name}
-                          </Menu.Button>
-                        </div>
-                        <Transition
-                          as={Fragment}
-                          enter="transition ease-out duration-100"
-                          enterFrom="transform opacity-0 scale-95"
-                          enterTo="transform opacity-100 scale-100"
-                          leave="transition ease-in duration-75"
-                          leaveFrom="transform opacity-100 scale-100"
-                          leaveTo="transform opacity-0 scale-95"
+                  {navigation.map((item, itemIdx) => {
+                    if (
+                      users.length === 0 &&
+                      (item.name === "施設" || item.name === "予約")
+                    ) {
+                      return null;
+                    }
+                    if (item.subMenu.length) {
+                      return (
+                        <Menu
+                          as="div"
+                          key={itemIdx}
+                          className="relative text-left"
                         >
-                          <Menu.Items className="absolute left-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-                            {item.subMenu.map((subItem) => (
-                              <Menu.Item key={subItem.name}>
-                                {({ active }) => (
-                                  <Link
-                                    href={subItem.href}
-                                    className={classNames(
-                                      active
-                                        ? "bg-gray-100 text-gray-900"
-                                        : "text-gray-700",
-                                      "block px-4 py-2 text-sm"
-                                    )}
-                                  >
-                                    {subItem.name}
-                                  </Link>
-                                )}
-                              </Menu.Item>
-                            ))}
-                          </Menu.Items>
-                        </Transition>
-                      </Menu>
-                    ) : (
-                      <Link
-                        key={itemIdx}
-                        href={item.href}
-                        className={classNames(
-                          "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "block rounded-md px-3 py-2 text-base font-medium"
-                        )}
-                      >
-                        {item.name}
-                      </Link>
-                    )
-                  )}
+                          <div>
+                            <Menu.Button className="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-300 hover:text-gray-900">
+                              {item.name}
+                            </Menu.Button>
+                          </div>
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                          >
+                            <Menu.Items className="absolute left-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                              {item.subMenu.map((subItem) => (
+                                <Menu.Item key={subItem.name}>
+                                  {({ active }) => (
+                                    <Link
+                                      href={subItem.href}
+                                      className={classNames(
+                                        active
+                                          ? "bg-gray-100 text-gray-900"
+                                          : "text-gray-700",
+                                        "block px-4 py-2 text-sm"
+                                      )}
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  )}
+                                </Menu.Item>
+                              ))}
+                            </Menu.Items>
+                          </Transition>
+                        </Menu>
+                      );
+                    } else {
+                      return (
+                        <Link
+                          key={itemIdx}
+                          href={item.href}
+                          className={classNames(
+                            "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "block rounded-md px-3 py-2 text-base font-medium"
+                          )}
+                        >
+                          {item.name}
+                        </Link>
+                      );
+                    }
+                  })}
                 </div>
                 {/* User section */}
                 <div className="pt-4 pb-3 border-t border-gray-700">
@@ -355,13 +365,7 @@ export default function Example() {
                             </li>
                           ))}
                         </ul>
-                      ) : (
-                        <img
-                          className="h-8 w-8 rounded-full aspect-content object-cover"
-                          src={photoUrl}
-                          alt=""
-                        />
-                      )}
+                      ) : null}
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
@@ -372,26 +376,32 @@ export default function Example() {
                       </div>
                     </div>
                     <Notifications />
-                    <button
-                      type="button"
-                      className="ml-auto rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                      <span className="sr-only">View notifications</span>
-                    </button>
                   </div>
                   <div className="mt-3 px-2 space-y-1">
-                    {userNavigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                        onClick={
-                          item.name === "サインアウト" ? handleSignOut : null
-                        }
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    {users.length > 0
+                      ? userNavigation.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-gray-700 hover:text-white"
+                            onClick={
+                              item.name === "サインアウト"
+                                ? handleSignOut
+                                : null
+                            }
+                          >
+                            {item.name}
+                          </a>
+                        ))
+                      : guestNavigation.map((item) => (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className="text-gray-900 hover:bg-gray-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                          >
+                            {item.name}
+                          </a>
+                        ))}
                   </div>
                 </div>
               </Disclosure.Panel>

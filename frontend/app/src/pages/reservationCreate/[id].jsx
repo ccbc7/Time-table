@@ -177,6 +177,8 @@ const ReservationCreate = () => {
           <h2 className="text-center text-3xl mb-2">
             予約作成: {location.location_name}
           </h2>
+      <div className="overflow-x-auto">
+
           <table className="table-fixed bg-white rounded-md overflow-hidden w-full">
             <thead>
               <tr className="bg-lime-50 border">
@@ -225,10 +227,11 @@ const ReservationCreate = () => {
                 ))}
             </tbody>
           </table>
+          </div>
           <div className="flex justify-center mb-5 mt-3 border-b pb-3">
             <button
               onClick={() => setWeekOffset(weekOffset - 1)}
-              className="mr-8 px-5 py-2 bg-blue-500 text-white rounded-md"
+              className="mr-8 px-2 sm:px-5 py-2 bg-blue-500 text-white rounded-md"
             >
               前の週
             </button>
@@ -237,7 +240,7 @@ const ReservationCreate = () => {
             }月${today.getDate()}日`}</h3>
             <button
               onClick={() => setWeekOffset(weekOffset + 1)}
-              className="ml-8 px-5 py-2 bg-blue-500 text-white rounded-md"
+              className="ml-8 px-2 sm:px-5 py-2 bg-blue-500 text-white rounded-md"
             >
               次の週
             </button>
