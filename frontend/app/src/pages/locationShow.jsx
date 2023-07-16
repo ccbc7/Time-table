@@ -40,61 +40,51 @@ const LocationsShow = () => {
       <p className="text-center border-b my-3">
         あなたが登録した施設を確認できます。
       </p>
-      <div className="my-4 flex justify-center">
-        <table className="">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2 bg-violet-200">ID</th>
-              <th className="border px-4 py-2 bg-violet-200">イメージ</th>
-              <th className="border px-4 py-2 bg-violet-200">施設名</th>
-              <th className="border px-4 py-2 bg-violet-200">登録ユーザー</th>
-              <th className="border px-4 py-2 bg-violet-200">作成日時</th>
-              <th className="border px-4 py-2 bg-violet-200">予約する</th>
-              <th className="border px-4 py-2 bg-violet-200">削除する</th>
-              <th className="border px-4 py-2 bg-violet-200">編集する</th>
-            </tr>
-          </thead>
-          <tbody className="text-center">
-            {locations.map((location) => (
-              <tr key={location.id}>
-                <td className="border  px-4 py-2">{location.id}</td>
-                <td className="border  px-4 py-2">
-                  <img
-                    src={location.image_url}
-                    alt={location.title}
-                    className="h-10"
-                  />
-                </td>
-                <td className="border  px-4 py-2">{location.location_name}</td>
-                <td className="border  px-4 py-2">{location.username}</td>
-                <td className="border  px-4 py-2">
-                  {new Intl.DateTimeFormat("ja-JP", {
-                    dateStyle: "short",
-                    timeStyle: "short",
-                  }).format(new Date(location.created_at))}
-                </td>
-                <td className="border  px-4 py-2">
-                  <Link href={`/reservationCreate/${location.id}`}>予約</Link>
-                </td>
-                <td className="border  px-4 py-2">
-                  <button onClick={() => deleteLocation(location.id)}>
-                    削除
-                  </button>
-                </td>
-                <td className="border  px-4 py-2">
-                  <Link href={`location/edit/${location.id}`}>編集</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
       <div className="text-center">
         <Link href="/locationCreate">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center mb-32">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded text-center">
             施設を登録する
           </button>
         </Link>
+      </div>
+      <div className="my-4 flex flex-col items-center sm:grid sm:grid-cols-4 sm:gap-2 mx-2">
+        {locations.map((location) => (
+          <div
+            key={location.id}
+            className="w-full sm:w-auto mb-4 sm:mb-0 border rounded-sm shadow-lg p-4"
+          >
+            <div className="mb-4">
+              <img
+                src={location.image_url}
+                alt={location.title}
+                className="h-32 w-auto mx-auto object-cover"
+              />
+            </div>
+            <div className="mb-2 font-bold text-center">
+              {location.location_name}
+            </div>
+            <div className="mb-2">ID: {location.id}</div>
+            <div className="mb-2">登録ユーザー: {location.username}</div>
+            <div className="mb-2">
+              作成日時:{" "}
+              {new Intl.DateTimeFormat("ja-JP", {
+                dateStyle: "short",
+                timeStyle: "short",
+              }).format(new Date(location.created_at))}
+            </div>
+            <div className="sm:border py-1 px-6 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-100 transition duration-200 ease-in-out shadow-sm my-2 text-center">
+              <Link href={`/reservationCreate/${location.id}`}>予約する</Link>
+            </div>
+            <div className="sm:border py-1 px-6 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-100 transition duration-200 ease-in-out shadow-sm my-2 text-center">
+              <button onClick={() => deleteLocation(location.id)}>
+                削除する
+              </button>
+            </div>
+            <div className="sm:border py-1 px-6 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-violet-100 transition duration-200 ease-in-out shadow-sm my-2 text-center">
+              <Link href={`location/edit/${location.id}`}>編集する</Link>
+            </div>
+          </div>
+        ))}
       </div>
       <Footer />
     </>
