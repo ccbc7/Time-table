@@ -15,7 +15,7 @@ https://prod.time-table01.com
 | 使用技術 | 詳細 |
 |-----|-----|
 | Next.js (13.4.3)| フロントエンドフレームワーク |
-|firebase|外部APIと連携|
+| Firebase|外部APIと連携|
 | Tailwind CSS | CSSフレームワーク| 
 | Tailwind UI | UIコンポーネント| 
 
@@ -26,7 +26,7 @@ https://prod.time-table01.com
 
 | 使用技術 | 詳細 |
 |-----|-----|
-| rails7 (7.0.4.3)|  Apiモード |
+| Rails7 (7.0.4.3)|  Apiモード |
 | MySQL | データベース| 
 | Rspec | リクエストスペック・モデルスペックのテストを実行します。| 
 | Rubocop | コードスタイルの一貫性を維持してくれます。| 
@@ -48,7 +48,7 @@ https://prod.time-table01.com
 |Terraform|VPCやRDSなどの設定のコード面での可視化を目指しました。|
 |Docker|バージョン管理やビルド手順の定義が非常に開発に助かります。|
 |docker-compose|フロントエンドとバックエンド両方のコンテナを扱う上で重宝しました。|
-|github actions|github上でスムーズにCICDフローを構築し、ECSへアップロードするまでの手順を非常に簡単にすることができます。|
+|GitHub actions|Github上でスムーズにCICDフローを構築し、ECSへアップロードするまでの手順を非常に簡単にすることができます。|
 
 <br>
 
