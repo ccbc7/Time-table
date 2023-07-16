@@ -80,7 +80,7 @@ const SliderComponent = () => {
       <SlideUpComponent>
         <div className="bg-gradient-to-b from-green-100 to-green-50 flex justify-center items-center py-3">
           <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-5xl py-6 px-10">
-            <div className="flex">
+            <div className="sm:flex">
               <div>
                 <ul className="list-none">
                   <p className={`${NSJ.className} text-2xl border-b `}>
@@ -102,9 +102,7 @@ const SliderComponent = () => {
                     <li>
                       施設へのコメントを共有することで、施設を使う人たち同士の情報共有がしやすくなります。
                     </li>
-                    <li>
-                      学校施設など、施設が多数ある場所で役立ちます。
-                    </li>
+                    <li>学校施設など、施設が多数ある場所で役立ちます。</li>
                   </p>
                 </ul>
               </div>
@@ -121,8 +119,8 @@ const SliderComponent = () => {
             <p className={`${NSJ.className} text-3xl border-b`}>
               Time tableの使い方
             </p>
-            <div className="flex space-x-10">
-              <div className="w-1/2">
+            <div className="sm:flex sm:space-x-10">
+              <div className="sm:w-1/2">
                 <div
                   style={{ width: "100%", margin: "auto", marginTop: "20px" }}
                 >
@@ -167,10 +165,10 @@ const SliderComponent = () => {
                   </Slider>
                 </div>
               </div>
-              <div className="w-1/2 pt-4">
+              <div className="sm:w-1/2 pt-4">
                 <ul className={`${NSJ.className}`}>
                   <li
-                    className="border-b mb-3 text-3xl"
+                    className="border-y mb-3 sm:text-3xl text-xl mt-5 sm:mt-0 sm:border-t-0"
                     dangerouslySetInnerHTML={{ __html: steps[currentSlide] }}
                   ></li>
                   <p
@@ -191,8 +189,8 @@ const SliderComponent = () => {
         <div className="bg-gradient-to-b from-green-50 to-white flex justify-center items-center py-3">
           <div className="bg-white p-2 rounded-lg shadow-lg w-full max-w-5xl pb-8 px-7">
             <p className={`${NSJ.className} text-3xl border-b`}>その他機能</p>
-            <div className="flex space-x-10">
-              <div className="w-1/2">
+            <div className="sm:flex sm:space-x-10">
+              <div className="sm:w-1/2">
                 <div
                   style={{ width: "100%", margin: "auto", marginTop: "20px" }}
                 >
@@ -217,10 +215,10 @@ const SliderComponent = () => {
                   </Slider>
                 </div>
               </div>
-              <div className="w-1/2 pt-4">
+              <div className="sm:w-1/2 pt-4">
                 <ul className={`${NSJ.className}`}>
                   <li
-                    className="border-b mb-3 text-3xl"
+                    className="border-y mb-3 sm:text-3xl text-xl mt-5 sm:mt-0 sm:border-t-0"
                     dangerouslySetInnerHTML={{ __html: steps2[currentSlide] }}
                   ></li>
                   <p
