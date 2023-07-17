@@ -47,7 +47,7 @@ const HourForm = ({ hour, onUpdate, onSave }) => {
         <form
           key={hour.id}
           onSubmit={handleSubmit(onSubmit)}
-          className=" flex items-center justify-between py-2 px-4"
+          className="flex items-center justify-between py-2 px-4"
         >
           <div className="flex">
             <label
@@ -63,7 +63,7 @@ const HourForm = ({ hour, onUpdate, onSave }) => {
           <div>
             <input
               id={`period-${hour.id}`}
-              className="shadow border rounded w-60 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow border rounded w-40 sm:w-60 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               {...register("period", {})}
             />
             {errors.period && (
