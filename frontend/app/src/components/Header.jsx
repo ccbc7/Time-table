@@ -383,7 +383,7 @@ export default function Example() {
                           <a
                             key={item.name}
                             href={item.href}
-                            className="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-gray-700 hover:text-white"
+                            className="block rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-700 hover:text-white"
                             onClick={
                               item.name === "サインアウト"
                                 ? handleSignOut
