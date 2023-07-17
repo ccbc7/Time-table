@@ -69,6 +69,7 @@ const ReservationAll = () => {
               <div className="w-1/3">
                 <Link href={`location/confirm/${reservation.location?.id}`}>
                   <img
+                    src={reservation.location?.image_url}
                     alt={reservation.title}
                     className="h-20 w-auto mx-auto object-cover rounded-md"
                   />
